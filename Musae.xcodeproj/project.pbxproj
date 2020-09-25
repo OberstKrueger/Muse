@@ -17,6 +17,7 @@
 		56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D1251E827B00A74B97 /* MusicDailyView.swift */; };
 		56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D4251E828E00A74B97 /* MusicPlaylistsView.swift */; };
 		56E047D8251E82AB00A74B97 /* MusicSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D7251E82AB00A74B97 /* MusicSettingsView.swift */; };
+		56E047DB251E844400A74B97 /* MusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047DA251E844400A74B97 /* MusicLibrary.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		56E047D1251E827B00A74B97 /* MusicDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDailyView.swift; sourceTree = "<group>"; };
 		56E047D4251E828E00A74B97 /* MusicPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistsView.swift; sourceTree = "<group>"; };
 		56E047D7251E82AB00A74B97 /* MusicSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettingsView.swift; sourceTree = "<group>"; };
+		56E047DA251E844400A74B97 /* MusicLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				56E047C7251E7CE500A74B97 /* MusicAuthorizer.swift */,
+				56E047DA251E844400A74B97 /* MusicLibrary.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				56E047C8251E7CE500A74B97 /* MusicAuthorizer.swift in Sources */,
 				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */,
+				56E047DB251E844400A74B97 /* MusicLibrary.swift in Sources */,
 				56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */,
 				56E047CF251E826700A74B97 /* MainView.swift in Sources */,
 				56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */,
