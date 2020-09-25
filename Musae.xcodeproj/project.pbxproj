@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MusaeApp.swift */; };
-		56CCC51D251E78DE0044BA07 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* ContentView.swift */; };
+		56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* AppView.swift */; };
 		56CCC51F251E78E00044BA07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC51E251E78E00044BA07 /* Assets.xcassets */; };
 		56CCC522251E78E00044BA07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC521251E78E00044BA07 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
@@ -16,7 +16,7 @@
 /* Begin PBXFileReference section */
 		56CCC517251E78DE0044BA07 /* Musae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CCC51A251E78DE0044BA07 /* MusaeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeApp.swift; sourceTree = "<group>"; };
-		56CCC51C251E78DE0044BA07 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		56CCC51C251E78DE0044BA07 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		56CCC51E251E78E00044BA07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56CCC521251E78E00044BA07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		56CCC523251E78E00044BA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -33,6 +33,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5642C682251E7B1C00430376 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				56CCC51C251E78DE0044BA07 /* AppView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		56CCC50E251E78DE0044BA07 = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +60,8 @@
 		56CCC519251E78DE0044BA07 /* Musae */ = {
 			isa = PBXGroup;
 			children = (
+				5642C682251E7B1C00430376 /* Views */,
 				56CCC51A251E78DE0044BA07 /* MusaeApp.swift */,
-				56CCC51C251E78DE0044BA07 /* ContentView.swift */,
 				56CCC51E251E78E00044BA07 /* Assets.xcassets */,
 				56CCC523251E78E00044BA07 /* Info.plist */,
 				56CCC520251E78E00044BA07 /* Preview Content */,
@@ -138,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56CCC51D251E78DE0044BA07 /* ContentView.swift in Sources */,
+				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

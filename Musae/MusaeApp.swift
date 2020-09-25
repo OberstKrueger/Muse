@@ -4,7 +4,7 @@ import SwiftUI
 struct MusaeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AppView()
         }
     }
 }
