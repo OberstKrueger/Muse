@@ -5,7 +5,7 @@ struct AppView: View {
 
     var body: some View {
         if authorizer.status == .authorized {
-            Text("Authorized!")
+            MainView()
         } else {
             AuthorizationView(authorizer: authorizer)
         }
