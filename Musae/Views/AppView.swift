@@ -1,14 +1,19 @@
 import SwiftUI
 
 struct AppView: View {
+    @ObservedObject var authorizer = MusicAuthorizer()
+
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        if authorizer.status == .authorized {
+            Text("Authorized!")
+        } else {
+            AuthorizationView(authorizer: authorizer)
+        }
     }
 }
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView()
+        AppView(authorizer: MusicAuthorizer())
     }
 }
