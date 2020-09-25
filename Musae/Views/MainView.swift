@@ -1,14 +1,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var library = MusicLibrary()
+
     var body: some View {
         TabView {
-            MusicDailyView()
+            MusicDailyView(library: library)
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle")
                     Text("Daily")
                 }
-            MusicPlaylistsView()
+            MusicPlaylistsView(library: library)
                 .tabItem {
                     Image(systemName: "music.note.list")
                     Text("Playlists")
