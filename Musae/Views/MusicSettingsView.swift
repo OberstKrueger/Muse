@@ -4,7 +4,15 @@ struct MusicSettingsView: View {
     @EnvironmentObject var settings: MusicSettings
 
     var body: some View {
-        Text("MusicSettingsView")
+        NavigationView {
+            Form {
+                Section {
+                    Stepper("Up Next Minutes: \(settings.upNextMinutes)", value: $settings.upNextMinutes)
+                }
+            }
+            .navigationTitle("Settings")
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
