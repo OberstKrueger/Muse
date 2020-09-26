@@ -21,8 +21,8 @@ class MusicLibrary: ObservableObject {
     @Published var dailyPlaylistDate: Date?
 
     /// Load and update daily playlists
-    func loadDailyPlaylists() {
-        if dailyPlaylistDate == nil || Calendar.current.isDateInToday(dailyPlaylistDate!) == false {
+    func loadDailyPlaylists(force: Bool = false) {
+        if dailyPlaylistDate == nil || Calendar.current.isDateInToday(dailyPlaylistDate!) == false || force {
             DispatchQueue.global().async { [self] in
                 var results: [String: String] = [:]
 
