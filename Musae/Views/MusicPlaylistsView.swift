@@ -8,7 +8,7 @@ struct MusicPlaylistsView: View {
             List {
                 ForEach(library.playlists.keys.sorted(), id: \.self) { key in
                     Section(header: Text(key)) {
-                        var dailyName = library.dailyPlaylists[key, default: ""]
+                        let dailyName = library.dailyPlaylists[key, default: ""]
 
                         ForEach(library.playlists[key, default: [:]].sorted(by: {$0.key < $1.key}), id: \.key) { list in
                             MusicPlaylistsItemView(daily: dailyName == list.key,
