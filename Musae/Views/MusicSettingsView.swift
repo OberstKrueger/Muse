@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct MusicSettingsView: View {
+    @EnvironmentObject var settings: MusicSettings
+
     var body: some View {
         Text("MusicSettingsView")
     }
@@ -8,6 +10,6 @@ struct MusicSettingsView: View {
 
 struct MusicSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicSettingsView()
+        MusicSettingsView().environmentObject(MusicSettings())
     }
 }
