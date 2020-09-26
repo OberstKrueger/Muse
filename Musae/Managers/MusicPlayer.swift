@@ -26,4 +26,36 @@ class MusicPlayer {
             }
         }
     }
+
+    /// Adds least played items from provided playlist to the Up Next queue.
+    func upNext(playlist: MusicLibraryPlaylist?) {
+        if let existingPlaylist = playlist {
+            DispatchQueue.global().async { [self] in
+                var songs: [MPMediaItem] = []
+                var totalDuration: Float64 = 0
+
+                for (_, value) in existingPlaylist.songs.sorted(by: {$0.key < $1.key}) {
+                    var upcomingSongs = value.shuffled()
+
+                    while totalDuration < Float64(32 * 60) && upcomingSongs.isEmpty == false {
+                        if let song = upcomingSongs.popLast() {
+                            songs.append(song)
+                            totalDuration += song.playbackDuration
+                        }
+                    }
+
+                    if totalDuration > (32 * 60) {
+                        break
+                    }
+                }
+
+                let collection = MPMediaItemCollection(items: songs)
+                let descriptor = MPMusicPlayerMediaItemQueueDescriptor(itemCollection: collection)
+
+                DispatchQueue.main.async {
+                    system.prepend(descriptor)
+                }
+            }
+        }
+    }
 }
