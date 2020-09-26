@@ -24,7 +24,7 @@ struct MusicDailyView: View {
                                 player.play(playlist: library.playlists[key, default: [:]][value])
                             }
                             Button("Up Next") {
-                                // add to up next
+                                player.upNext(playlist: library.playlists[key, default: [:]][value])
                             }
                             .padding(.leading)
                         }
