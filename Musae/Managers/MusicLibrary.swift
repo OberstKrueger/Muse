@@ -72,6 +72,11 @@ class MusicLibrary: ObservableObject {
             return nil
         }
     }
+
+    // MARK: - INITIALIZATION
+    init() {
+        updateMusic()
+    }
 }
 
 struct MusicLibraryPlaylist {
