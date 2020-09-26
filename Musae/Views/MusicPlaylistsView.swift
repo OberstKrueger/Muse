@@ -8,8 +8,12 @@ struct MusicPlaylistsView: View {
             List {
                 ForEach(library.playlists.keys.sorted(), id: \.self) { key in
                     Section(header: Text(key)) {
+                        var dailyName = library.dailyPlaylists[key, default: ""]
+
                         ForEach(library.playlists[key, default: [:]].sorted(by: {$0.key < $1.key}), id: \.key) { list in
-                            MusicPlaylistsItemView(name: list.key, playcount: list.value.averagePlayCountPrint)
+                            MusicPlaylistsItemView(daily: dailyName == list.key,
+                                                   name: list.key,
+                                                   playcount: list.value.averagePlayCountPrint)
                         }
                     }
                 }
@@ -21,12 +25,18 @@ struct MusicPlaylistsView: View {
 }
 
 struct MusicPlaylistsItemView: View {
+    var daily: Bool
     var name: String
     var playcount: String
 
     var body: some View {
         HStack {
-            Text(name)
+            if daily {
+                Text(name)
+                    .fontWeight(.black)
+            } else {
+                Text(name)
+            }
             Spacer()
             Text("\(playcount)")
         }
