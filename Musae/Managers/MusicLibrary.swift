@@ -100,6 +100,17 @@ struct MusicLibraryPlaylist {
         return Float64(total) / count
     }
 
+    /// Average play count of all songs in the playlist, formatted to 2 decimal places.
+    var averagePlayCountPrint: String {
+        let formatter = NumberFormatter()
+
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        formatter.roundingMode = .halfUp
+
+        return formatter.string(from: averagePlayCount as NSNumber) ?? "0"
+    }
+
     /// Adds a song to the playlist.
     mutating func add(_ song: MPMediaItem) {
         songs[song.playCount, default: []].append(song)
