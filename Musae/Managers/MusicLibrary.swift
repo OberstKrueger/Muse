@@ -14,6 +14,39 @@ class MusicLibrary: ObservableObject {
     /// Set of playlists, organized by category.
     @Published var playlists: [String: [String: MusicLibraryPlaylist]] = [:]
 
+    // MARK: - DAILY PLAYLISTS
+    /// Daily playlists by category
+    @Published var dailyPlaylists: [String: String] = [:]
+    /// Date the daily playlists were last updated.
+    @Published var dailyPlaylistDate: Date?
+
+    /// Load and update daily playlists
+    func loadDailyPlaylists() {
+        if dailyPlaylistDate == nil || Calendar.current.isDateInToday(dailyPlaylistDate!) == false {
+            DispatchQueue.global().async { [self] in
+                var results: [String: String] = [:]
+
+                for key in playlists.keys {
+                    let sortedPlaylists = playlists[key, default: [:]]
+                        .sorted(by: {$0.value.averagePlayCount < $1.value.averagePlayCount})
+                        .map({($0.key)})
+
+                    switch sortedPlaylists.count {
+                    case ...0: results[key] = "Empty category!"
+                    case ...4: results[key] = sortedPlaylists[0]
+                    case ...8: results[key] = sortedPlaylists[...3].randomElement()!
+                    default:   results[key] = sortedPlaylists[...7].randomElement()!
+                    }
+                }
+
+                DispatchQueue.main.async {
+                    dailyPlaylists = results
+                    dailyPlaylistDate = Date()
+                }
+            }
+        }
+    }
+
     // MARK: - LOADING AND UPDATING MUSIC
     /// Whether the library is currently being loaded.
     var libraryLoading: Bool = false
@@ -43,6 +76,8 @@ class MusicLibrary: ObservableObject {
                     DispatchQueue.main.async {
                         playlists = libraryPlaylists
                         lastUpdated = libraryLastModifiedDate
+
+                        loadDailyPlaylists()
 
                         libraryLoading = false
                     }
