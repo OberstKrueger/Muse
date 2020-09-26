@@ -23,7 +23,7 @@ class MusicPlayer {
                     system.prepareToPlay()
                     system.play()
                 }
-        }
+            }
         }
     }
 }
