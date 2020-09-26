@@ -114,6 +114,7 @@ class MusicLibrary: ObservableObject {
     }
 }
 
+/// Playlist populated from a user playlist
 struct MusicLibraryPlaylist {
     /// Songs in playlist, organized by playcount.
     var songs: [Int: [MPMediaItem]] = [:]
