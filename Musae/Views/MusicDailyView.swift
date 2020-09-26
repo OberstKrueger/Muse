@@ -3,6 +3,8 @@ import SwiftUI
 struct MusicDailyView: View {
     @ObservedObject var library: MusicLibrary
 
+    var player = MusicPlayer()
+
     var body: some View {
         NavigationView {
             ScrollView { [self] in
@@ -19,7 +21,7 @@ struct MusicDailyView: View {
                         Spacer()
                         HStack {
                             Button("Play") {
-                                // play music
+                                player.play(playlist: library.playlists[key, default: [:]][value])
                             }
                             Button("Up Next") {
                                 // add to up next
