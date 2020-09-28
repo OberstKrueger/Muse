@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Environment(\.scenePhase) var scenePhase
     @ObservedObject var library = MusicLibrary()
 
     var body: some View {
@@ -20,6 +21,16 @@ struct MainView: View {
                     Image(systemName: "gear")
                     Text("Settings")
                 }
+        }
+        .onChange(of: scenePhase) { phase in
+            switch phase {
+            case .active:
+                library.startTimer()
+            case .inactive:
+                library.stopTimer()
+            default:
+                break
+            }
         }
     }
 }

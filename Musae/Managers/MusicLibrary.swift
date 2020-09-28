@@ -133,7 +133,7 @@ class MusicLibrary: ObservableObject {
 
     // MARK: - INITIALIZATION
     init() {
-        updateMusic()
+        startTimer()
     }
 }
 
