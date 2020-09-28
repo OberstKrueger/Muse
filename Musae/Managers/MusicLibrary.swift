@@ -108,6 +108,29 @@ class MusicLibrary: ObservableObject {
         }
     }
 
+    // MARK: - TIMERS
+    /// Timer for refreshing the music library.
+    var timer: Timer?
+
+    /// Starts the timer if it is not already running.
+    func startTimer() {
+        print("Starting timer.")
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+                print("Timer triggered: \(Date()).")
+                self.updateMusic()
+            }
+        }
+        timer?.fire()
+    }
+
+    /// Stops the timer.
+    func stopTimer() {
+        print("Stopping timer.")
+        timer?.invalidate()
+        timer = nil
+    }
+
     // MARK: - INITIALIZATION
     init() {
         updateMusic()
