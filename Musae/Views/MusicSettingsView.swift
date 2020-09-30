@@ -7,6 +7,7 @@ struct MusicSettingsView: View {
         NavigationView {
             Form {
                 Section {
+                    Toggle("Sort By Average Play Count", isOn: $settings.sortByAveragePlayCount)
                     Stepper("Up Next Minutes: \(settings.upNextMinutes)", value: $settings.upNextMinutes)
                 }
             }
