@@ -109,6 +109,9 @@ class MusicLibrary: ObservableObject {
     }
 
     // MARK: - TIMERS
+    /// Date the timer will fire again.
+    @Published var timerNextFireTime: Date?
+
     /// Timer for refreshing the music library.
     var timer: Timer?
 
@@ -119,6 +122,10 @@ class MusicLibrary: ObservableObject {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 print("Timer triggered: \(Date()).")
                 self.updateMusic()
+
+                DispatchQueue.main.async {
+                    self.timerNextFireTime = self.timer?.fireDate
+                }
             }
         }
         timer?.fire()

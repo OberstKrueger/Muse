@@ -16,7 +16,7 @@ struct MainView: View {
                     Image(systemName: "music.note.list")
                     Text("Playlists")
                 }
-            MusicSettingsView()
+            MusicSettingsView(library: library)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")
