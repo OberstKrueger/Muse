@@ -153,17 +153,10 @@ struct MusicLibraryPlaylist {
     var averagePlayCount: Float64 {
         if songs.count == 0 { return 0 }
 
-        var count: Float64 = 0
-        var total: Int = 0
+        let count: Int = songs.values.flatMap({$0}).count
+        let total: Int = songs.reduce(0, {$0 + ($1.key * $1.value.count)})
 
-        for array in songs.values {
-            for song in array {
-                count += 1
-                total += song.playCount
-            }
-        }
-
-        return Float64(total) / count
+        return Float64(total) / Float64(count)
     }
 
     /// Average play count of all songs in the playlist, formatted to 2 decimal places.
