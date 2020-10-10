@@ -27,15 +27,24 @@ class MusicLibrary: ObservableObject {
                 var results: [String: String] = [:]
 
                 for key in playlists.keys {
-                    let sortedPlaylists = playlists[key, default: [:]]
+                    /// Results with an average playcount above or equal to 1.
+                    let resultsAll: [String] = playlists[key, default: [:]]
                         .sorted(by: {$0.value.averagePlayCount < $1.value.averagePlayCount})
                         .map({($0.key)})
+                    /// Results with an average playcount below 1.
+                    let resultsBelow: [String] = playlists[key, default: [:]]
+                        .filter({$0.value.averagePlayCount < 1})
+                        .map({$0.key})
 
-                    switch sortedPlaylists.count {
-                    case ...0: results[key] = "Empty category!"
-                    case ...4: results[key] = sortedPlaylists[0]
-                    case ...8: results[key] = sortedPlaylists[...3].randomElement()!
-                    default:   results[key] = sortedPlaylists[...7].randomElement()!
+                    if let playlist = resultsBelow.randomElement() {
+                        results[key] = playlist
+                    } else {
+                        switch resultsAll.count {
+                        case ...0: results[key] = "Empty category!"
+                        case ...4: results[key] = resultsAll[0]
+                        case ...8: results[key] = resultsAll[...3].randomElement()!
+                        default:   results[key] = resultsAll[...7].randomElement()!
+                        }
                     }
                 }
 
