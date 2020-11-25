@@ -72,11 +72,7 @@ class MusicLibrary: ObservableObject {
                 if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
                     for list in lists {
                         if let nameComponents = validName(name: list.name ?? "") {
-                            var newPlaylist = MusicLibraryPlaylist()
-
-                            for song in list.items {
-                                newPlaylist.add(song)
-                            }
+                            let newPlaylist = MusicLibraryPlaylist(list.items)
 
                             libraryPlaylists[nameComponents.category, default: [:]][nameComponents.name] = newPlaylist
                         }
@@ -179,8 +175,7 @@ struct MusicLibraryPlaylist {
         return formatter.string(from: averagePlayCount as NSNumber) ?? "0"
     }
 
-    /// Adds a song to the playlist.
-    mutating func add(_ song: MPMediaItem) {
-        songs[song.playCount, default: []].append(song)
+    init(_ items: [MPMediaItem]) {
+        self.songs = Dictionary(grouping: items, by: {$0.playCount})
     }
 }
