@@ -5,6 +5,8 @@ struct MusicPlaylistsView: View {
     @EnvironmentObject var settings: MusicSettings
     @ObservedObject var library: MusicLibrary
 
+    let formatter = NumberFormatter()
+
     var body: some View {
         NavigationView {
             List {
@@ -26,13 +28,15 @@ struct MusicPlaylistsView: View {
 
     /// Formats a playcount to display 2 decimal places.
     func formatPlayCount(_ playcount: Float64) -> String {
-        let formatter = NumberFormatter()
+        return formatter.string(from: playcount as NSNumber) ?? "0"
+    }
+
+    init(library: MusicLibrary) {
+        self.library = library
 
         formatter.maximumFractionDigits = 2
         formatter.minimumFractionDigits = 2
         formatter.roundingMode = .halfUp
-
-        return formatter.string(from: playcount as NSNumber) ?? "0"
     }
 }
 
