@@ -94,7 +94,7 @@ class MusicLibrary: ObservableObject {
     /// Updates playlists if they have been changed.
     func updateMusic() {
         if let last = lastUpdated {
-            if library.lastModifiedDate > last {
+            if library.lastModifiedDate != last {
                 loadMusic()
             }
         } else {
