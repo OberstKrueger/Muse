@@ -15,7 +15,7 @@ class MusicSettings: ObservableObject {
         set {
             _sortByAveragePlayCount = newValue
 
-            defaults.set(newValue, forKey: UserDefaultsStrings.SortByAveragePlayCount.rawValue)
+            defaults.set(newValue, forKey: UserDefaultsStrings.sortByAveragePlayCount.rawValue)
         }
     }
 
@@ -29,19 +29,19 @@ class MusicSettings: ObservableObject {
             default:      _upNextMinutes = 480
             }
 
-            defaults.set(Int(newValue), forKey: UserDefaultsStrings.UpNextMinutes.rawValue)
+            defaults.set(Int(newValue), forKey: UserDefaultsStrings.upNextMinutes.rawValue)
         }
     }
 
     init() {
-        let checkUpNextMinutes = defaults.integer(forKey: UserDefaultsStrings.UpNextMinutes.rawValue)
+        let checkUpNextMinutes = defaults.integer(forKey: UserDefaultsStrings.upNextMinutes.rawValue)
 
-        sortByAveragePlayCount = defaults.bool(forKey: UserDefaultsStrings.SortByAveragePlayCount.rawValue)
+        sortByAveragePlayCount = defaults.bool(forKey: UserDefaultsStrings.sortByAveragePlayCount.rawValue)
         upNextMinutes = checkUpNextMinutes > 0 ? UInt(checkUpNextMinutes) : 30
     }
 }
 
 enum UserDefaultsStrings: String {
-    case SortByAveragePlayCount = "SortByAveragePlayCount"
-    case UpNextMinutes = "UpNextMinutes"
+    case sortByAveragePlayCount = "SortByAveragePlayCount"
+    case upNextMinutes = "UpNextMinutes"
 }
