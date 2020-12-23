@@ -1,3 +1,4 @@
+import Foundation
 import SwiftUI
 
 struct MusicPlaylistsView: View {
@@ -11,7 +12,7 @@ struct MusicPlaylistsView: View {
                     let daily = library.dailyPlaylists[key, default: ""]
                     let playlists = library.playlists[key, default: [:]]
                         .sorted(by: {settings.sortByAveragePlayCount ? $0.value.averagePlayCount < $1.value.averagePlayCount : $0.key < $1.key})
-                        .map({($0.key, $0.value.averagePlayCountPrint)})
+                        .map({($0.key, formatPlayCount($0.value.averagePlayCount))})
 
                     MusicPlaylistsSectionView(category: key,
                                               dailyName: daily,
@@ -21,6 +22,17 @@ struct MusicPlaylistsView: View {
             .navigationTitle("Playlists")
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+
+    /// Formats a playcount to display 2 decimal places.
+    func formatPlayCount(_ playcount: Float64) -> String {
+        let formatter = NumberFormatter()
+
+        formatter.maximumFractionDigits = 2
+        formatter.minimumFractionDigits = 2
+        formatter.roundingMode = .halfUp
+
+        return formatter.string(from: playcount as NSNumber) ?? "0"
     }
 }
 
