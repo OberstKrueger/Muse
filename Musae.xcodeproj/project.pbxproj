@@ -31,6 +31,7 @@
 		56CCC51E251E78E00044BA07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56CCC521251E78E00044BA07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		56CCC523251E78E00044BA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56DF74D12598A553006443B2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		56E047C7251E7CE500A74B97 /* MusicAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAuthorizer.swift; sourceTree = "<group>"; };
 		56E047CB251E7EF600A74B97 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		56E047CE251E826700A74B97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -67,6 +68,7 @@
 		56CCC50E251E78DE0044BA07 = {
 			isa = PBXGroup;
 			children = (
+				56DF74D12598A553006443B2 /* LICENSE */,
 				56CCC519251E78DE0044BA07 /* Musae */,
 				56CCC518251E78DE0044BA07 /* Products */,
 			);
