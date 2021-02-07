@@ -5,14 +5,8 @@ import MediaPlayer
 /// Library manager. Loads and updates playlists from the users music library.
 class MusicManager: ObservableObject {
     // MARK: - GENERAL
-    /// OS-provided media library.
-    let library = MPMediaLibrary()
-
-    /// Date the library was last updated.
-    var lastUpdated: Date?
-
-    /// Set of playlists, organized by category.
-    @Published var playlists: [String: [String: MusicPlaylist]] = [:]
+    /// The user's music library.
+    @Published var library = MusicLibrary()
 
     // MARK: - DAILY PLAYLISTS
     /// Daily playlists by category
@@ -26,15 +20,15 @@ class MusicManager: ObservableObject {
             DispatchQueue.global().async { [self] in
                 var results: [String: String] = [:]
 
-                for key in playlists.keys {
+                for key in library.playlists.keys {
                     /// Results with an average playcount above or equal to 1.
-                    let resultsAll: [String] = playlists[key, default: [:]]
-                        .sorted(by: {$0.value.averagePlayCount < $1.value.averagePlayCount})
-                        .map({($0.key)})
+                    let resultsAll: [String] = library.playlists[key, default: []]
+                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
+                        .map({($0.title)})
                     /// Results with an average playcount below 1.
-                    let resultsBelow: [String] = playlists[key, default: [:]]
-                        .filter({$0.value.averagePlayCount < 1})
-                        .map({$0.key})
+                    let resultsBelow: [String] = library.playlists[key, default: []]
+                        .filter({$0.averagePlayCount < 1})
+                        .map({$0.title})
 
                     if let playlist = resultsBelow.randomElement() {
                         results[key] = playlist
@@ -56,63 +50,6 @@ class MusicManager: ObservableObject {
         }
     }
 
-    // MARK: - LOADING AND UPDATING MUSIC
-    /// Whether the library is currently being loaded.
-    var libraryLoading: Bool = false
-
-    /// Loads playlists and categories from music library.
-    func loadMusic() {
-        if libraryLoading == false {
-            libraryLoading = true
-
-            DispatchQueue.global().async { [self] in
-                let libraryLastModifiedDate = library.lastModifiedDate
-                var libraryPlaylists: [String: [String: MusicPlaylist]] = [:]
-
-                if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-                    for list in lists {
-                        if let nameComponents = validName(name: list.name ?? "") {
-                            let newPlaylist = MusicPlaylist(list.items)
-
-                            libraryPlaylists[nameComponents.category, default: [:]][nameComponents.name] = newPlaylist
-                        }
-                    }
-
-                    DispatchQueue.main.async {
-                        playlists = libraryPlaylists
-                        lastUpdated = libraryLastModifiedDate
-
-                        loadDailyPlaylists()
-
-                        libraryLoading = false
-                    }
-                }
-            }
-        }
-    }
-
-    /// Updates playlists if they have been changed.
-    func updateMusic() {
-        if let last = lastUpdated {
-            if library.lastModifiedDate != last {
-                loadMusic()
-            }
-        } else {
-            loadMusic()
-        }
-    }
-
-    /// Checks if the playlist has a valid name.
-    fileprivate func validName(name: String) -> (category: String, name: String)? {
-        let elements = name.components(separatedBy: " - ")
-
-        if elements.count == 2 {
-            return (elements[0], elements[1])
-        } else {
-            return nil
-        }
-    }
-
     // MARK: - TIMERS
     /// Date the timer will fire again.
     @Published var timerNextFireTime: Date?
@@ -126,7 +63,7 @@ class MusicManager: ObservableObject {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 print("Timer triggered: \(Date()).")
-                self.updateMusic()
+                self.library.updateMusic()
 
                 DispatchQueue.main.async {
                     self.timerNextFireTime = self.timer?.fireDate

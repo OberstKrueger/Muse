@@ -22,10 +22,10 @@ struct MusicDailyView: View {
                         Spacer()
                         HStack {
                             Button("Play") {
-                                player.play(playlist: library.playlists[key, default: [:]][value])
+//                                player.play(playlist: library.library.playlists[key, default: [:]][value])
                             }
                             Button("Up Next") {
-                                player.upNext(playlist: library.playlists[key, default: [:]][value], minutes: settings.upNextMinutes)
+//                                player.upNext(playlist: library.playlists[key, default: [:]][value], minutes: settings.upNextMinutes)
                             }
                             .padding(.leading)
                         }

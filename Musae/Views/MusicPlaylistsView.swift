@@ -10,11 +10,11 @@ struct MusicPlaylistsView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(library.playlists.keys.sorted(), id: \.self) { key in
+                ForEach(library.library.playlists.keys.sorted(), id: \.self) { key in
                     let daily = library.dailyPlaylists[key, default: ""]
-                    let playlists = library.playlists[key, default: [:]]
-                        .sorted(by: {settings.sortByAveragePlayCount ? $0.value.averagePlayCount < $1.value.averagePlayCount : $0.key < $1.key})
-                        .map({($0.key, formatPlayCount($0.value.averagePlayCount))})
+                    let playlists = library.library.playlists[key, default: []]
+                        .sorted(by: {settings.sortByAveragePlayCount ? $0.averagePlayCount < $1.averagePlayCount : $0.title < $1.title})
+                        .map({($0.title, formatPlayCount($0.averagePlayCount))})
 
                     MusicPlaylistsSectionView(category: key,
                                               dailyName: daily,
