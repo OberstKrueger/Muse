@@ -3,7 +3,7 @@ import Foundation
 import MediaPlayer
 
 /// Library manager. Loads and updates playlists from the users music library.
-class MusicLibrary: ObservableObject {
+class MusicManager: ObservableObject {
     // MARK: - GENERAL
     /// OS-provided media library.
     let library = MPMediaLibrary()

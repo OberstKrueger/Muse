@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MusicSettingsView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: MusicLibrary
+    @ObservedObject var library: MusicManager
 
     var body: some View {
         NavigationView {
@@ -23,6 +23,6 @@ struct MusicSettingsView: View {
 
 struct MusicSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicSettingsView(library: MusicLibrary()).environmentObject(MusicSettings())
+        MusicSettingsView(library: MusicManager()).environmentObject(MusicSettings())
     }
 }

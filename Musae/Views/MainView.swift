@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var library = MusicLibrary()
+    @ObservedObject var library = MusicManager()
 
     var body: some View {
         TabView {

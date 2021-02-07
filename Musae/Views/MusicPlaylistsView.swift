@@ -3,7 +3,7 @@ import SwiftUI
 
 struct MusicPlaylistsView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: MusicLibrary
+    @ObservedObject var library: MusicManager
 
     let formatter = NumberFormatter()
 
@@ -31,7 +31,7 @@ struct MusicPlaylistsView: View {
         return formatter.string(from: playcount as NSNumber) ?? "0"
     }
 
-    init(library: MusicLibrary) {
+    init(library: MusicManager) {
         self.library = library
 
         formatter.maximumFractionDigits = 2
@@ -75,6 +75,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(library: MusicLibrary()).environmentObject(MusicSettings())
+        MusicPlaylistsView(library: MusicManager()).environmentObject(MusicSettings())
     }
 }
