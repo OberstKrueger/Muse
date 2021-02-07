@@ -67,6 +67,10 @@ class MusicManager: ObservableObject {
 
                 DispatchQueue.main.async {
                     self.timerNextFireTime = self.timer?.fireDate
+
+                    DispatchQueue.global().async {
+                        self.loadDailyPlaylists()
+                    }
                 }
             }
         }
