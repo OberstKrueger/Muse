@@ -5,9 +5,6 @@ class MusicLibrary {
     /// OS-provided media library.
     let library = MPMediaLibrary()
 
-    /// Whether the library is currently being loaded.
-    var isLoading: Bool = false
-
     /// Date the library was last updated.
     var lastUpdated: Date?
 
@@ -16,29 +13,21 @@ class MusicLibrary {
 
     /// Loads playlists and categories from music library.
     func loadMusic() {
-        if isLoading == false {
-            isLoading = true
+        let libraryLastModifiedDate = library.lastModifiedDate
+        var libraryPlaylists: [String: [MusicPlaylist]] = [:]
 
-            DispatchQueue.global().async { [self] in
-                let libraryLastModifiedDate = library.lastModifiedDate
-                var libraryPlaylists: [String: [MusicPlaylist]] = [:]
+        if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
+            for list in lists {
+                if let nameComponents = validName(name: list.name ?? "") {
+                    let newPlaylist = MusicPlaylist(items: list.items, title: nameComponents.name)
 
-                if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-                    for list in lists {
-                        if let nameComponents = validName(name: list.name ?? "") {
-                            let newPlaylist = MusicPlaylist(items: list.items, title: nameComponents.name)
-
-                            libraryPlaylists[nameComponents.category, default: []].append(newPlaylist)
-                        }
-                    }
-
-                    DispatchQueue.main.async {
-                        playlists = libraryPlaylists
-                        lastUpdated = libraryLastModifiedDate
-
-                        isLoading = false
-                    }
+                    libraryPlaylists[nameComponents.category, default: []].append(newPlaylist)
                 }
+            }
+
+            DispatchQueue.main.async {
+                self.playlists = libraryPlaylists
+                self.lastUpdated = libraryLastModifiedDate
             }
         }
     }
