@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		56006F8125D0037D00A6EB07 /* MusicPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56006F8025D0037D00A6EB07 /* MusicPlaylist.swift */; };
 		563C1946251FAFF3002F3EEA /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1945251FAFF3002F3EEA /* MusicPlayer.swift */; };
 		563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1948251FBFC2002F3EEA /* MusicSettings.swift */; };
 		56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MusaeApp.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		56006F8025D0037D00A6EB07 /* MusicPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylist.swift; sourceTree = "<group>"; };
 		563C1945251FAFF3002F3EEA /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		563C1948251FBFC2002F3EEA /* MusicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettings.swift; sourceTree = "<group>"; };
 		56CCC517251E78DE0044BA07 /* Musae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musae.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +54,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		56006F7F25D0036B00A6EB07 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				56006F8025D0037D00A6EB07 /* MusicPlaylist.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		5642C682251E7B1C00430376 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +95,7 @@
 		56CCC519251E78DE0044BA07 /* Musae */ = {
 			isa = PBXGroup;
 			children = (
+				56006F7F25D0036B00A6EB07 /* Library */,
 				56E047C6251E7CD200A74B97 /* Managers */,
 				5642C682251E7B1C00430376 /* Views */,
 				56CCC51A251E78DE0044BA07 /* MusaeApp.swift */,
@@ -192,6 +203,7 @@
 				56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */,
 				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,
 				563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */,
+				56006F8125D0037D00A6EB07 /* MusicPlaylist.swift in Sources */,
 				563C1946251FAFF3002F3EEA /* MusicPlayer.swift in Sources */,
 				56E047D8251E82AB00A74B97 /* MusicSettingsView.swift in Sources */,
 			);

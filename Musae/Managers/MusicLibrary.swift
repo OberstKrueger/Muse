@@ -12,7 +12,7 @@ class MusicLibrary: ObservableObject {
     var lastUpdated: Date?
 
     /// Set of playlists, organized by category.
-    @Published var playlists: [String: [String: MusicLibraryPlaylist]] = [:]
+    @Published var playlists: [String: [String: MusicPlaylist]] = [:]
 
     // MARK: - DAILY PLAYLISTS
     /// Daily playlists by category
@@ -67,12 +67,12 @@ class MusicLibrary: ObservableObject {
 
             DispatchQueue.global().async { [self] in
                 let libraryLastModifiedDate = library.lastModifiedDate
-                var libraryPlaylists: [String: [String: MusicLibraryPlaylist]] = [:]
+                var libraryPlaylists: [String: [String: MusicPlaylist]] = [:]
 
                 if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
                     for list in lists {
                         if let nameComponents = validName(name: list.name ?? "") {
-                            let newPlaylist = MusicLibraryPlaylist(list.items)
+                            let newPlaylist = MusicPlaylist(list.items)
 
                             libraryPlaylists[nameComponents.category, default: [:]][nameComponents.name] = newPlaylist
                         }
@@ -146,25 +146,5 @@ class MusicLibrary: ObservableObject {
     // MARK: - INITIALIZATION
     init() {
         startTimer()
-    }
-}
-
-/// Playlist populated from a user playlist
-struct MusicLibraryPlaylist {
-    /// Songs in playlist, organized by playcount.
-    var songs: [Int: [MPMediaItem]] = [:]
-
-    /// Average playcount of all songs in the playlist.
-    var averagePlayCount: Float64 {
-        if songs.count == 0 { return 0 }
-
-        let count: Int = songs.values.flatMap({$0}).count
-        let total: Int = songs.reduce(0, {$0 + ($1.key * $1.value.count)})
-
-        return Float64(total) / Float64(count)
-    }
-
-    init(_ items: [MPMediaItem]) {
-        self.songs = Dictionary(grouping: items, by: {$0.playCount})
     }
 }

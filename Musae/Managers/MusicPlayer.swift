@@ -7,7 +7,7 @@ class MusicPlayer {
     let system = MPMusicPlayerController.systemMusicPlayer
 
     /// Plays the provided playlist shuffled, with least played songs played first.
-    func play(playlist: MusicLibraryPlaylist?) {
+    func play(playlist: MusicPlaylist?) {
         if let existingPlaylist = playlist {
             DispatchQueue.global().async { [self] in
                 var songs: [MPMediaItem] = []
@@ -28,7 +28,7 @@ class MusicPlayer {
     }
 
     /// Adds least played items from provided playlist to the Up Next queue.
-    func upNext(playlist: MusicLibraryPlaylist?, minutes: UInt) {
+    func upNext(playlist: MusicPlaylist?, minutes: UInt) {
         if let existingPlaylist = playlist {
             DispatchQueue.global().async { [self] in
                 var songs: [MPMediaItem] = []
