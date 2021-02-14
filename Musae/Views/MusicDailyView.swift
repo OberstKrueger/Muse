@@ -26,7 +26,7 @@ struct MusicDailyView: View {
                                     .filter({$0.title == value})
 
                                 if playlist.count == 1 {
-                                    player.play(playlist: playlist[0])
+                                    player.play(playlist: playlist[0], category: key)
                                 }
                             }
                             Button("Up Next") {
@@ -34,7 +34,7 @@ struct MusicDailyView: View {
                                     .filter({$0.title == value})
 
                                 if playlist.count == 1 {
-                                    player.upNext(playlist: playlist[0], minutes: settings.upNextMinutes)
+                                    player.upNext(playlist: playlist[0], category: key, minutes: settings.upNextMinutes)
                                 }
                             }
                             .padding(.leading)
