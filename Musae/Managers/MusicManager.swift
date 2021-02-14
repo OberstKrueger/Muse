@@ -1,12 +1,15 @@
 import Combine
 import Foundation
 import MediaPlayer
+import os
 
 /// Library manager. Loads and updates playlists from the users music library.
 class MusicManager: ObservableObject {
     // MARK: - GENERAL
     /// The user's music library.
     @Published var library = MusicLibrary()
+
+    let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
     // MARK: - DAILY PLAYLISTS
     /// Daily playlists by category
@@ -59,10 +62,10 @@ class MusicManager: ObservableObject {
 
     /// Starts the timer if it is not already running.
     func startTimer() {
-        print("Starting timer.")
+        logger.info("Starting library update timer.")
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
-                print("Timer triggered: \(Date()).")
+                self.logger.info("Library update timer triggered.")
                 self.library.updateMusic()
 
                 DispatchQueue.main.async {
@@ -79,7 +82,7 @@ class MusicManager: ObservableObject {
 
     /// Stops the timer.
     func stopTimer() {
-        print("Stopping timer.")
+        logger.info("Stopping library update timer.")
         timer?.invalidate()
         timer = nil
     }
