@@ -9,6 +9,7 @@ class MusicManager: ObservableObject {
     /// The user's music library.
     @Published var library = MusicLibrary()
 
+    /// System logger.
     let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
     // MARK: - DAILY PLAYLISTS
