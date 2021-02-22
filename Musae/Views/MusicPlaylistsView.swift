@@ -13,7 +13,9 @@ struct MusicPlaylistsView: View {
                 ForEach(library.library.playlists.keys.sorted(), id: \.self) { key in
                     let daily = library.dailyPlaylists[key, default: ""]
                     let playlists = library.library.playlists[key, default: []]
-                        .sorted(by: {settings.sortByAveragePlayCount ? $0.averagePlayCount < $1.averagePlayCount : $0.title < $1.title})
+                        .sorted(by: {settings.sortByAveragePlayCount ?
+                                    $0.averagePlayCount < $1.averagePlayCount :
+                                    $0.title < $1.title})
                         .map({($0.title, formatPlayCount($0.averagePlayCount))})
 
                     MusicPlaylistsSectionView(category: key,
