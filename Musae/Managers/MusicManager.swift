@@ -5,19 +5,32 @@ import os
 
 /// Library manager. Loads and updates playlists from the users music library.
 class MusicManager: ObservableObject {
-    // MARK: - GENERAL
-    /// The user's music library.
-    @Published var library = MusicLibrary()
+    // MARK: - Initializations
+    init() {
+        startTimer()
+    }
 
+    // MARK: - Internal Properties
     /// System logger.
     let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
-    // MARK: - DAILY PLAYLISTS
+    /// Timer for refreshing the music library.
+    var timer: Timer?
+
+    // MARK: - Public Properties
+    /// The user's music library.
+    @Published var library = MusicLibrary()
+
     /// Daily playlists by category
     @Published var dailyPlaylists: [String: String] = [:]
+
     /// Date the daily playlists were last updated.
     @Published var dailyPlaylistDate: Date?
 
+    /// Date the timer will fire again.
+    @Published var timerNextFireTime: Date?
+
+    // MARK: - Public Functions
     /// Load and update daily playlists
     func loadDailyPlaylists(force: Bool = false) {
         if dailyPlaylistDate == nil || Calendar.current.isDateInToday(dailyPlaylistDate!) == false || force {
@@ -54,13 +67,6 @@ class MusicManager: ObservableObject {
         }
     }
 
-    // MARK: - TIMERS
-    /// Date the timer will fire again.
-    @Published var timerNextFireTime: Date?
-
-    /// Timer for refreshing the music library.
-    var timer: Timer?
-
     /// Starts the timer if it is not already running.
     func startTimer() {
         logger.info("Starting library update timer.")
@@ -86,10 +92,5 @@ class MusicManager: ObservableObject {
         logger.info("Stopping library update timer.")
         timer?.invalidate()
         timer = nil
-    }
-
-    // MARK: - INITIALIZATION
-    init() {
-        startTimer()
     }
 }
