@@ -1,5 +1,4 @@
 import Combine
-import Foundation
 
 /// User settings.
 class MusicSettings: ObservableObject {
@@ -7,15 +6,14 @@ class MusicSettings: ObservableObject {
     @Published var _sortByAveragePlayCount: Bool = false
 
     /// The user defaults database.
-    let defaults = UserDefaults.standard
+    let defaults = Defaults()
 
     /// Sort playlist view by average playcount instead of alphabetically.
     var sortByAveragePlayCount: Bool {
         get { return _sortByAveragePlayCount }
         set {
+            defaults.sortByAveragePlayCount = newValue
             _sortByAveragePlayCount = newValue
-
-            defaults.set(newValue, forKey: UserDefaultsStrings.sortByAveragePlayCount.rawValue)
         }
     }
 
@@ -29,19 +27,12 @@ class MusicSettings: ObservableObject {
             default:      _upNextMinutes = 480
             }
 
-            defaults.set(Int(newValue), forKey: UserDefaultsStrings.upNextMinutes.rawValue)
+            defaults.upNextMinutes = newValue
         }
     }
 
     init() {
-        let checkUpNextMinutes = defaults.integer(forKey: UserDefaultsStrings.upNextMinutes.rawValue)
-
-        sortByAveragePlayCount = defaults.bool(forKey: UserDefaultsStrings.sortByAveragePlayCount.rawValue)
-        upNextMinutes = checkUpNextMinutes > 0 ? UInt(checkUpNextMinutes) : 30
+        sortByAveragePlayCount = defaults.sortByAveragePlayCount
+        upNextMinutes = defaults.upNextMinutes
     }
-}
-
-enum UserDefaultsStrings: String {
-    case sortByAveragePlayCount = "SortByAveragePlayCount"
-    case upNextMinutes = "UpNextMinutes"
 }

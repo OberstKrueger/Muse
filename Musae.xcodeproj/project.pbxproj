@@ -11,6 +11,7 @@
 		56006F8525D004BB00A6EB07 /* MusicLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56006F8425D004BB00A6EB07 /* MusicLibrary.swift */; };
 		563C1946251FAFF3002F3EEA /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1945251FAFF3002F3EEA /* MusicPlayer.swift */; };
 		563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1948251FBFC2002F3EEA /* MusicSettings.swift */; };
+		56A17EC325F4217000CA876B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A17EC225F4217000CA876B /* Defaults.swift */; };
 		56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MusaeApp.swift */; };
 		56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* AppView.swift */; };
 		56CCC51F251E78E00044BA07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC51E251E78E00044BA07 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 		56006F8425D004BB00A6EB07 /* MusicLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
 		563C1945251FAFF3002F3EEA /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		563C1948251FBFC2002F3EEA /* MusicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettings.swift; sourceTree = "<group>"; };
+		56A17EC225F4217000CA876B /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		56CCC517251E78DE0044BA07 /* Musae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CCC51A251E78DE0044BA07 /* MusaeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeApp.swift; sourceTree = "<group>"; };
 		56CCC51C251E78DE0044BA07 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 		56006F7F25D0036B00A6EB07 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				56A17EC225F4217000CA876B /* Defaults.swift */,
 				56006F8025D0037D00A6EB07 /* MusicPlaylist.swift */,
 				56006F8425D004BB00A6EB07 /* MusicLibrary.swift */,
 			);
@@ -207,6 +210,7 @@
 				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,
 				563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */,
 				56006F8125D0037D00A6EB07 /* MusicPlaylist.swift in Sources */,
+				56A17EC325F4217000CA876B /* Defaults.swift in Sources */,
 				56006F8525D004BB00A6EB07 /* MusicLibrary.swift in Sources */,
 				563C1946251FAFF3002F3EEA /* MusicPlayer.swift in Sources */,
 				56E047D8251E82AB00A74B97 /* MusicSettingsView.swift in Sources */,
