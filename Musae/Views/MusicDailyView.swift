@@ -22,20 +22,13 @@ struct MusicDailyView: View {
                         Spacer()
                         HStack {
                             Button("Play") {
-                                let playlist = library.library.playlists[key, default: []]
-                                    .filter({$0.title == value})
-
-                                if playlist.count == 1 {
-                                    player.play(playlist: playlist[0], category: key)
-                                }
+                                player.play(playlist: library.playlistByName(category: key, name: value),
+                                            category: key)
                             }
                             Button("Up Next") {
-                                let playlist = library.library.playlists[key, default: []]
-                                    .filter({$0.title == value})
-
-                                if playlist.count == 1 {
-                                    player.upNext(playlist: playlist[0], category: key, minutes: settings.upNextMinutes)
-                                }
+                                player.upNext(playlist: library.playlistByName(category: key, name: value),
+                                              category: key,
+                                              minutes: settings.upNextMinutes)
                             }
                             .padding(.leading)
                         }

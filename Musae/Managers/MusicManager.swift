@@ -67,6 +67,33 @@ class MusicManager: ObservableObject {
         }
     }
 
+    /// Returns the playlist by a name.
+    /// - Note: If multiple playlists have the same name, the function will return a combined playlist of their contents.
+    func playlistByName(category: String, name: String) -> MusicPlaylist? {
+        let results = library.playlists[category, default: []].filter({$0.title == name})
+
+        switch results.count {
+        case ...0:
+            logger.notice("Playlist \"\(category) - \(name)\" was not found in the library.")
+
+            return nil
+        case 1:
+            return results[0]
+        default:
+            var songs: [MPMediaItem] = []
+
+            for result in results {
+                for value in result.songs.values {
+                    songs.append(contentsOf: value)
+                }
+            }
+
+            logger.notice("Multiple playlists named \"\(category) - \(name)\" found: \(results.count)")
+
+            return MusicPlaylist(items: songs, title: name)
+        }
+    }
+
     /// Starts the timer if it is not already running.
     func startTimer() {
         logger.info("Starting library update timer.")
