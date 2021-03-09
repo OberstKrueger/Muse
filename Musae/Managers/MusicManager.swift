@@ -21,11 +21,8 @@ class MusicManager: ObservableObject {
     /// The user's music library.
     @Published var library = MusicLibrary()
 
-    /// Daily playlists by category
-    @Published var dailyPlaylists: [String: String] = [:]
-
-    /// Date the daily playlists were last updated.
-    @Published var dailyPlaylistDate: Date?
+    /// Daily playlists.
+    @Published var daily: DailyPlaylists = DailyPlaylists()
 
     /// Date the timer will fire again.
     @Published var timerNextFireTime: Date?
@@ -33,35 +30,12 @@ class MusicManager: ObservableObject {
     // MARK: - Public Functions
     /// Load and update daily playlists
     func loadDailyPlaylists(force: Bool = false) {
-        if dailyPlaylistDate == nil || Calendar.current.isDateInToday(dailyPlaylistDate!) == false || force {
+        if daily.date == nil || Calendar.current.isDateInToday(daily.date!) == false || force {
             DispatchQueue.global().async { [self] in
-                var results: [String: String] = [:]
-
-                for key in library.playlists.keys {
-                    /// Results with an average playcount above or equal to 1.
-                    let resultsAll: [String] = library.playlists[key, default: []]
-                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
-                        .map({($0.title)})
-                    /// Results with an average playcount below 1.
-                    let resultsBelow: [String] = library.playlists[key, default: []]
-                        .filter({$0.averagePlayCount < 1})
-                        .map({$0.title})
-
-                    if let playlist = resultsBelow.randomElement() {
-                        results[key] = playlist
-                    } else {
-                        switch resultsAll.count {
-                        case ...0: results[key] = "Empty category!"
-                        case ...4: results[key] = resultsAll[0]
-                        case ...8: results[key] = resultsAll[...3].randomElement()!
-                        default:   results[key] = resultsAll[...7].randomElement()!
-                        }
-                    }
-                }
+                let results = DailyPlaylists(library.playlists)
 
                 DispatchQueue.main.async {
-                    dailyPlaylists = results
-                    dailyPlaylistDate = Date()
+                    daily = results
                 }
             }
         }

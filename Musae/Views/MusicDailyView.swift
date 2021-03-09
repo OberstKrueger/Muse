@@ -9,7 +9,7 @@ struct MusicDailyView: View {
     var body: some View {
         NavigationView {
             ScrollView { [self] in
-                ForEach(library.dailyPlaylists.sorted(by: {$0.key < $1.key}), id: \.key) { key, value in
+                ForEach(library.daily.playlists.sorted(by: {$0.key < $1.key}), id: \.key) { key, value in
                     HStack {
                         VStack(alignment: .leading) {
                             Text(key)
@@ -35,7 +35,7 @@ struct MusicDailyView: View {
                         .padding()
                     }
                 }
-                if let date = library.dailyPlaylistDate {
+                if let date = library.daily.date {
                     Button("Last updated: \(date)") {
                         library.loadDailyPlaylists(force: true)
                     }

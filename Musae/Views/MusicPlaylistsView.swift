@@ -11,7 +11,7 @@ struct MusicPlaylistsView: View {
         NavigationView {
             List {
                 ForEach(library.library.playlists.keys.sorted(), id: \.self) { key in
-                    let daily = library.dailyPlaylists[key, default: ""]
+                    let daily = library.daily.playlists[key, default: ""]
                     let playlists = library.library.playlists[key, default: []]
                         .sorted(by: {settings.sortByAveragePlayCount ?
                                     $0.averagePlayCount < $1.averagePlayCount :
