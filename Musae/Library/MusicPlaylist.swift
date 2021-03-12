@@ -10,7 +10,7 @@ struct MusicPlaylist {
 
     /// Average playcount of all songs in the playlist.
     var averagePlayCount: Float64 {
-        if songs.count == 0 { return 0 }
+        if songs.count == 0 { return .nan }
 
         let count: Int = songs.values.flatMap({$0}).count
         let total: Int = songs.reduce(0, {$0 + ($1.key * $1.value.count)})
