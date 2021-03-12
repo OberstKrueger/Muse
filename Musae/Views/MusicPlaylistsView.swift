@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 struct MusicPlaylistsView: View {
@@ -16,7 +15,7 @@ struct MusicPlaylistsView: View {
                         .sorted(by: {settings.sortByAveragePlayCount ?
                                     $0.averagePlayCount < $1.averagePlayCount :
                                     $0.title < $1.title})
-                        .map({($0.title, formatPlayCount($0.averagePlayCount))})
+                        .map({($0.title, $0.averagePlayCount)})
 
                     MusicPlaylistsSectionView(category: key,
                                               dailyName: daily,
@@ -28,24 +27,15 @@ struct MusicPlaylistsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    /// Formats a playcount to display 2 decimal places.
-    func formatPlayCount(_ playcount: Float64) -> String {
-        return formatter.string(from: playcount as NSNumber) ?? "0"
-    }
-
     init(library: MusicManager) {
         self.library = library
-
-        formatter.maximumFractionDigits = 2
-        formatter.minimumFractionDigits = 2
-        formatter.roundingMode = .halfUp
     }
 }
 
 struct MusicPlaylistsSectionView: View {
     let category: String
     let dailyName: String
-    let playlists: [(name: String, playcount: String)]
+    let playlists: [(name: String, playcount: Float64)]
 
     var body: some View {
         Section(header: Text(category)) {
@@ -59,7 +49,7 @@ struct MusicPlaylistsSectionView: View {
 struct MusicPlaylistsItemView: View {
     var daily: Bool
     var name: String
-    var playcount: String
+    var playcount: Float64
 
     var body: some View {
         HStack {
@@ -70,7 +60,7 @@ struct MusicPlaylistsItemView: View {
                 Text(name)
             }
             Spacer()
-            Text("\(playcount)")
+            Text("\(playcount, specifier: "%.2f")")
         }
     }
 }
