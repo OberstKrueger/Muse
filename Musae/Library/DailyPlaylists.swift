@@ -8,9 +8,16 @@ struct DailyPlaylists {
     /// Daily playlists by category.
     var playlists: [String: String] = [:]
 
-    init() { playlists = [:] }
+    init() {
+        let defaults = Defaults()
+
+        date = defaults.dailyDate
+        playlists = defaults.dailyPlaylists
+    }
 
     init(_ libraryPlaylists: [String: [MusicPlaylist]]) {
+        let defaults = Defaults()
+
         for key in libraryPlaylists.keys {
             /// Results with an average playcount above or equal to 1.
             let resultsAll: [String] = libraryPlaylists[key, default: []]
@@ -35,5 +42,8 @@ struct DailyPlaylists {
         }
 
         date = Date()
+
+        defaults.dailyDate = date
+        defaults.dailyPlaylists = playlists
     }
 }
