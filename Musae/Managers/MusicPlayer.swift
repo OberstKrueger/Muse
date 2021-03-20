@@ -33,7 +33,7 @@ class MusicPlayer {
     }
 
     /// Adds least played items from provided playlist to the Up Next queue.
-    func upNext(playlist: MusicPlaylist?, category: String, minutes: UInt) {
+    func upNext(playlist: MusicPlaylist?, category: String, minutes: Int) {
         logger.info("Adding to up next: \(category) - \(playlist?.title ?? "no playlist provided")")
         if let existingPlaylist = playlist {
             DispatchQueue.global().async { [self] in

@@ -2,7 +2,7 @@ import Combine
 
 /// User settings.
 class MusicSettings: ObservableObject {
-    @Published var _upNextMinutes: UInt = 1
+    @Published var _upNextMinutes: Int = 1
     @Published var _sortByAveragePlayCount: Bool = false
 
     /// The user defaults database.
@@ -18,11 +18,11 @@ class MusicSettings: ObservableObject {
     }
 
     /// Number of minutes for Up Next play.
-    var upNextMinutes: UInt {
+    var upNextMinutes: Int {
         get { return _upNextMinutes }
         set {
             switch newValue {
-            case 0:       _upNextMinutes = 1
+            case ...0:       _upNextMinutes = 1
             case 1...480: _upNextMinutes = newValue
             default:      _upNextMinutes = 480
             }

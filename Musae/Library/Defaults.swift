@@ -32,9 +32,9 @@ class Defaults {
         set { defaults.set(newValue, forKey: DefaultsStrings.sortByAveragePlayCount.rawValue) }
     }
 
-    var upNextMinutes: UInt {
-        get { return UInt(bitPattern: defaults.integer(forKey: DefaultsStrings.upNextMinutes.rawValue)) }
-        set { defaults.set(Int(bitPattern: newValue), forKey: DefaultsStrings.upNextMinutes.rawValue) }
+    var upNextMinutes: Int {
+        get { return defaults.integer(forKey: DefaultsStrings.upNextMinutes.rawValue) }
+        set { defaults.set(newValue, forKey: DefaultsStrings.upNextMinutes.rawValue) }
     }
 }
 
