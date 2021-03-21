@@ -26,9 +26,14 @@ class MusicLibrary {
                 }
             }
 
-            DispatchQueue.main.async {
+            if Thread.isMainThread {
                 self.playlists = libraryPlaylists
                 self.lastUpdated = libraryLastModifiedDate
+            } else {
+                DispatchQueue.main.async {
+                    self.playlists = libraryPlaylists
+                    self.lastUpdated = libraryLastModifiedDate
+                }
             }
         }
     }
