@@ -1,6 +1,7 @@
 import Foundation
 import MediaPlayer
 
+/// Provides access to the user's music library
 class MusicLibrary {
     /// OS-provided media library.
     let library = MPMediaLibrary()
