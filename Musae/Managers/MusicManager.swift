@@ -42,7 +42,7 @@ class MusicManager: ObservableObject {
     }
 
     /// Returns the playlist by a name.
-    /// - Note: If multiple playlists have the same name, the function will return a combined playlist of their contents.
+    /// - Note: If multiple playlists have the same name, this will return a combined playlist of their contents.
     func playlistByName(category: String, name: String) -> MusicPlaylist? {
         let results = library.playlists[category, default: []].filter({$0.title == name})
 
