@@ -4,12 +4,14 @@ import os
 
 /// Plays provided playlists and songs through the system music player.
 class MusicPlayer {
+    // MARK: - Internal Properties
     /// System music player
     let system = MPMusicPlayerController.systemMusicPlayer
 
     /// System logger
     let logger = Logger(subsystem: "technology.krueger.musae", category: "player")
 
+    // MARK: - Public Functions
     /// Plays the provided playlist shuffled, with least played songs played first.
     func play(playlist: MusicPlaylist?, category: String) {
         logger.info("Starting playlist: \(category) - \(playlist?.title ?? "no playlist provided")")

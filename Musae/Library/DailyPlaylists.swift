@@ -2,12 +2,7 @@ import Foundation
 
 /// Daily playlists for the library.
 struct DailyPlaylists {
-    /// Date dailiy playlists were updated.
-    var date: Date?
-
-    /// Daily playlists by category.
-    var playlists: [String: String] = [:]
-
+    // MARK: - Initializations
     init() {
         let defaults = Defaults()
 
@@ -46,4 +41,11 @@ struct DailyPlaylists {
         defaults.dailyDate = date
         defaults.dailyPlaylists = playlists
     }
+
+    // MARK: - Public Properties
+    /// Date dailiy playlists were updated.
+    var date: Date?
+
+    /// Daily playlists by category.
+    var playlists: [String: String] = [:]
 }

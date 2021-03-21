@@ -2,12 +2,21 @@ import Combine
 
 /// User settings.
 class MusicSettings: ObservableObject {
-    @Published var _upNextMinutes: Int = 1
-    @Published var _sortByAveragePlayCount: Bool = false
-
+    // MARK: - Initializations
+    init() {
+        sortByAveragePlayCount = defaults.sortByAveragePlayCount
+        upNextMinutes = defaults.upNextMinutes
+    }
+    
+    // MARK: - Private Properties
     /// The user defaults database.
     let defaults = Defaults()
 
+    // MARK: - Public Properties
+    @Published var _upNextMinutes: Int = 1
+    @Published var _sortByAveragePlayCount: Bool = false
+
+    // MARK: - Public Functions
     /// Sort playlist view by average playcount instead of alphabetically.
     var sortByAveragePlayCount: Bool {
         get { return _sortByAveragePlayCount }
@@ -29,10 +38,5 @@ class MusicSettings: ObservableObject {
 
             defaults.upNextMinutes = newValue
         }
-    }
-
-    init() {
-        sortByAveragePlayCount = defaults.sortByAveragePlayCount
-        upNextMinutes = defaults.upNextMinutes
     }
 }

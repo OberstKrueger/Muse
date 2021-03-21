@@ -3,9 +3,21 @@ import MediaPlayer
 
 /// Checks and requests authorization status for the user's music library.
 class MusicAuthorizer: ObservableObject {
+    // MARK: - Initializations
+    init() {
+        updateStatus()
+    }
+
+    // Used for UI-building purposes.
+    init(status: MusicAuthorizationStatus) {
+        self.status = status
+    }
+    
+    // MARK: - Public Properties
     /// The current authorization status of the user's music library.
     @Published var status: MusicAuthorizationStatus = .unknown
 
+    // MARK: - Public Functions
     /// Requests authorization from the user.
     func requestAuthorization() {
         MPMediaLibrary.requestAuthorization({ _ in
@@ -25,15 +37,6 @@ class MusicAuthorizer: ObservableObject {
         @unknown default:
             fatalError("Unknown MPMediaLibrary.authorizationStatus() returned: \(MPMediaLibrary.authorizationStatus())")
         }
-    }
-
-    init() {
-        updateStatus()
-    }
-
-    // Used for UI-building purposes.
-    init(status: MusicAuthorizationStatus) {
-        self.status = status
     }
 }
 

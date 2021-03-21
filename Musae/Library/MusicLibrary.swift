@@ -3,15 +3,30 @@ import MediaPlayer
 
 /// Provides access to the user's music library
 class MusicLibrary {
+    // MARK: - Internal Properties
     /// OS-provided media library.
     let library = MPMediaLibrary()
 
+    // MARK: - Public Properties
     /// Date the library was last updated.
     var lastUpdated: Date?
 
     /// Set of playlists, organized by category.
     var playlists: [String: [MusicPlaylist]] = [:]
 
+    // MARK: - Internal Functiones
+    /// Checks if the playlist has a valid name.
+    fileprivate func validName(name: String) -> (category: String, name: String)? {
+        let elements = name.components(separatedBy: " - ")
+
+        if elements.count == 2 {
+            return (elements[0], elements[1])
+        } else {
+            return nil
+        }
+    }
+
+    // MARK: - Public FUnctions
     /// Loads playlists and categories from music library.
     func loadMusic() {
         let libraryLastModifiedDate = library.lastModifiedDate
@@ -46,17 +61,6 @@ class MusicLibrary {
             }
         } else {
             loadMusic()
-        }
-    }
-
-    /// Checks if the playlist has a valid name.
-    fileprivate func validName(name: String) -> (category: String, name: String)? {
-        let elements = name.components(separatedBy: " - ")
-
-        if elements.count == 2 {
-            return (elements[0], elements[1])
-        } else {
-            return nil
         }
     }
 }
