@@ -29,6 +29,7 @@
 /* Begin PBXFileReference section */
 		56006F8025D0037D00A6EB07 /* MusicPlaylist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylist.swift; sourceTree = "<group>"; };
 		56006F8425D004BB00A6EB07 /* MusicLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLibrary.swift; sourceTree = "<group>"; };
+		5603069E2613D14D00BF0406 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		563C1945251FAFF3002F3EEA /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		563C1948251FBFC2002F3EEA /* MusicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettings.swift; sourceTree = "<group>"; };
 		566433B025F815C400F46880 /* DailyPlaylists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlaylists.swift; sourceTree = "<group>"; };
@@ -88,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				56DF74D12598A553006443B2 /* LICENSE */,
+				5603069E2613D14D00BF0406 /* README.md */,
 				56CCC519251E78DE0044BA07 /* Musae */,
 				56CCC518251E78DE0044BA07 /* Products */,
 			);
