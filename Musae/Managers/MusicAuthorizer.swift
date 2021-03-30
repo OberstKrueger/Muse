@@ -21,8 +21,12 @@ class MusicAuthorizer: ObservableObject {
     /// Requests authorization from the user.
     func requestAuthorization() {
         MPMediaLibrary.requestAuthorization({ _ in
-            DispatchQueue.main.async {
+            if Thread.isMainThread {
                 self.updateStatus()
+            } else {
+                DispatchQueue.main.async {
+                    self.updateStatus()
+                }
             }
         })
     }
