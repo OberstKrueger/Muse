@@ -4,18 +4,13 @@ import MediaPlayer
 /// Checks and requests authorization status for the user's music library.
 class MusicAuthorizer: ObservableObject {
     // MARK: - Initializations
-    init() {
-        updateStatus()
-    }
-
-    // Used for UI-building purposes.
-    init(status: LibraryAuthorizationStatus) {
+    init(status: LibraryAuthorizationStatus = .unknown) {
         self.status = status
     }
     
     // MARK: - Public Properties
     /// The current authorization status of the user's music library.
-    @Published var status: LibraryAuthorizationStatus = .unknown
+    @Published var status: LibraryAuthorizationStatus
 
     // MARK: - Public Functions
     /// Requests authorization from the user.
