@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppView: View {
-    @ObservedObject var authorizer = MusicAuthorizer()
+    @ObservedObject var authorizer = AuthorizationManager()
 
     var body: some View {
         if authorizer.status == .authorized {
@@ -14,6 +14,6 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView(authorizer: MusicAuthorizer())
+        AppView(authorizer: AuthorizationManager())
     }
 }

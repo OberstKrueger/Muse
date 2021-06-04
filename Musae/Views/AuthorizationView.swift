@@ -4,7 +4,7 @@ import SwiftUI
 // Go back to doing authorizer that also requests authorization
 
 struct AuthorizationView: View {
-    @ObservedObject var authorizer: MusicAuthorizer
+    @ObservedObject var authorizer: AuthorizationManager
 
     var body: some View {
         VStack {
@@ -27,10 +27,10 @@ struct AuthorizationView: View {
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            AuthorizationView(authorizer: MusicAuthorizer(status: .authorized))
-            AuthorizationView(authorizer: MusicAuthorizer(status: .denied))
-            AuthorizationView(authorizer: MusicAuthorizer(status: .notAsked))
-            AuthorizationView(authorizer: MusicAuthorizer(status: .unknown))
+            AuthorizationView(authorizer: AuthorizationManager(status: .authorized))
+            AuthorizationView(authorizer: AuthorizationManager(status: .denied))
+            AuthorizationView(authorizer: AuthorizationManager(status: .notAsked))
+            AuthorizationView(authorizer: AuthorizationManager(status: .unknown))
         }
     }
 }

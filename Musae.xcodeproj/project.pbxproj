@@ -18,7 +18,7 @@
 		56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* AppView.swift */; };
 		56CCC51F251E78E00044BA07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC51E251E78E00044BA07 /* Assets.xcassets */; };
 		56CCC522251E78E00044BA07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC521251E78E00044BA07 /* Preview Assets.xcassets */; };
-		56E047C8251E7CE500A74B97 /* MusicAuthorizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047C7251E7CE500A74B97 /* MusicAuthorizer.swift */; };
+		56E047C8251E7CE500A74B97 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */; };
 		56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047CB251E7EF600A74B97 /* AuthorizationView.swift */; };
 		56E047CF251E826700A74B97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047CE251E826700A74B97 /* MainView.swift */; };
 		56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D1251E827B00A74B97 /* MusicDailyView.swift */; };
@@ -43,7 +43,7 @@
 		56CCC521251E78E00044BA07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		56CCC523251E78E00044BA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56DF74D12598A553006443B2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		56E047C7251E7CE500A74B97 /* MusicAuthorizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAuthorizer.swift; sourceTree = "<group>"; };
+		56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		56E047CB251E7EF600A74B97 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		56E047CE251E826700A74B97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56E047D1251E827B00A74B97 /* MusicDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDailyView.swift; sourceTree = "<group>"; };
@@ -131,7 +131,7 @@
 		56E047C6251E7CD200A74B97 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				56E047C7251E7CE500A74B97 /* MusicAuthorizer.swift */,
+				56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */,
 				56E047DA251E844400A74B97 /* MusicManager.swift */,
 				563C1945251FAFF3002F3EEA /* MusicPlayer.swift */,
 				563C1948251FBFC2002F3EEA /* MusicSettings.swift */,
@@ -208,7 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E047C8251E7CE500A74B97 /* MusicAuthorizer.swift in Sources */,
+				56E047C8251E7CE500A74B97 /* AuthorizationManager.swift in Sources */,
 				566433B125F815C400F46880 /* DailyPlaylists.swift in Sources */,
 				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */,

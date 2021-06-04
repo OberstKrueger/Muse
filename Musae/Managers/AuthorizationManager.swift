@@ -2,7 +2,7 @@ import Combine
 import MediaPlayer
 
 /// Checks and requests authorization status for the user's music library.
-class MusicAuthorizer: ObservableObject {
+class AuthorizationManager: ObservableObject {
     // MARK: - Initializations
     init(status: LibraryAuthorizationStatus = .unknown) {
         self.status = status
