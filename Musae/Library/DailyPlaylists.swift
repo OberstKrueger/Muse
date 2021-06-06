@@ -10,7 +10,7 @@ struct DailyPlaylists {
         playlists = defaults.dailyPlaylists
     }
 
-    init(_ libraryPlaylists: [String: [MusicPlaylist]]) {
+    init(_ libraryPlaylists: [String: [Playlist]]) {
         let defaults = Defaults()
 
         for (key, value) in libraryPlaylists {
