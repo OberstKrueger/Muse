@@ -1,3 +1,4 @@
+import Foundation
 import MediaPlayer
 import os
 
@@ -10,11 +11,17 @@ class LibraryManager {
     fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
     // MARK: - Public Proeprties
+    /// Set of playlists organized by category.
+    var categories: [String: [Playlist]] = [:]
+
+    /// Daily playlists.
+    var daily: DailyPlaylists = DailyPlaylists()
+
     /// Date the library was last updated.
     var lastUpdated: Date?
 
-    /// Set of playlists organized by category.
-    var categories: [String: [Playlist]] = [:]
+    /// Timer for refreshing the music library.
+    var timer: Timer?
 
     // MARK: - Internal Functions
     /// Checks if the playlist has a valid name.
@@ -31,6 +38,41 @@ class LibraryManager {
     }
 
     // MARK: - Public Functions
+    /// Load and update daily playlists
+    func loadDailyPlaylists(force: Bool = false) {
+        if daily.date == nil || Calendar.current.isDateInToday(daily.date!) == false || force {
+            DispatchQueue.global().async { [self] in
+                logger.notice("Updating daily playlists.")
+                let results = DailyPlaylists(categories)
+
+                DispatchQueue.main.async { [self] in
+                    logger.notice("Daily playlist update is complete.")
+                    print(daily.playlists)
+                    daily = results
+                }
+            }
+        }
+    }
+
+    /// Starts the timer if it is not already running.
+    func startTimer() {
+        logger.info("Starting library update timer.")
+        if timer == nil {
+            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
+                self.logger.info("Library update timer triggered.")
+                self.updateMusic()
+                self.loadDailyPlaylists()
+            }
+        }
+    }
+
+    /// Stops the timer.
+    func stopTimer() {
+        logger.info("Stopping library update timer.")
+        timer?.invalidate()
+        timer = nil
+    }
+
     func updateMusic() {
         logger.log("Beginning library update process.")
         if lastUpdated != library.lastModifiedDate {
