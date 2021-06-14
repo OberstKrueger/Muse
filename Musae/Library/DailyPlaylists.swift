@@ -24,7 +24,7 @@ struct DailyPlaylists {
                     for _ in 1..<(64 - check.leadingZeroBitCount) {
                         result *= 2
                     }
-                    return result
+                    return result - 1
                 }
             }
 
