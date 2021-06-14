@@ -47,16 +47,8 @@ class LibraryManager: ObservableObject {
     /// Load and update daily playlists
     func loadDailyPlaylists(force: Bool = false) {
         if daily.date == nil || Calendar.current.isDateInToday(daily.date!) == false || force {
-            DispatchQueue.global().async { [self] in
-                logger.notice("Updating daily playlists.")
-                let results = DailyPlaylists(categories)
-
-                DispatchQueue.main.async { [self] in
-                    logger.notice("Daily playlist update is complete.")
-                    print(daily.playlists)
-                    daily = results
-                }
-            }
+            logger.notice("Updating daily playlists.")
+            daily = DailyPlaylists(categories)
         }
     }
 
@@ -83,7 +75,6 @@ class LibraryManager: ObservableObject {
     func updateMusic() {
         logger.log("Beginning library update process.")
         if lastUpdated != library.lastModifiedDate {
-            logger.log("Library updated: \(self.library.lastModifiedDate)")
             var newCategories: [String: [Playlist]] = [:]
 
             if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
@@ -103,6 +94,7 @@ class LibraryManager: ObservableObject {
                     }
                 }
             }
+            logger.log("Library updated: \(self.library.lastModifiedDate)")
         } else {
             logger.log("Library not updated.")
         }
