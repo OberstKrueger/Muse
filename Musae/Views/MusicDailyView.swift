@@ -2,9 +2,9 @@ import SwiftUI
 
 struct MusicDailyView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: MusicManager
+    @ObservedObject var library: LibraryManager
 
-    var player = MusicPlayer()
+    var player = PlayerManager()
 
     var body: some View {
         NavigationView {
@@ -22,13 +22,10 @@ struct MusicDailyView: View {
                         Spacer()
                         HStack {
                             Button("Play") {
-                                player.play(playlist: library.playlistByName(category: key, name: value),
-                                            category: key)
+                                player.play()
                             }
                             Button("Up Next") {
-                                player.upNext(playlist: library.playlistByName(category: key, name: value),
-                                              category: key,
-                                              minutes: settings.upNextMinutes)
+                                player.upNext()
                             }
                             .padding(.leading)
                         }
@@ -49,6 +46,6 @@ struct MusicDailyView: View {
 
 struct MusicDailyView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicDailyView(library: MusicManager()).environmentObject(MusicSettings())
+        MusicDailyView(library: LibraryManager()).environmentObject(MusicSettings())
     }
 }

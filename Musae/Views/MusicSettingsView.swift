@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MusicSettingsView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: MusicManager
+    @ObservedObject var library: LibraryManager
 
     var body: some View {
         NavigationView {
@@ -11,8 +11,8 @@ struct MusicSettingsView: View {
                     Toggle("Sort By Average Play Count", isOn: $settings.sortByAveragePlayCount)
                     Stepper("Up Next Minutes: \(settings.upNextMinutes)", value: $settings.upNextMinutes)
                 }
-                if let date = library.timerNextFireTime {
-                    Text("Next Library Update: \(date)")
+                if let date = library.lastUpdated {
+                    Text("Library Updated: \(date)")
                 }
             }
             .navigationTitle("Settings")
@@ -23,6 +23,6 @@ struct MusicSettingsView: View {
 
 struct MusicSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicSettingsView(library: MusicManager()).environmentObject(MusicSettings())
+        MusicSettingsView(library: LibraryManager()).environmentObject(MusicSettings())
     }
 }

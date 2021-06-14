@@ -1,8 +1,14 @@
 import Foundation
 import MediaPlayer
+import SwiftUI
 import os
 
-class LibraryManager {
+class LibraryManager: ObservableObject {
+    // MARK: - Initializers
+    init() {
+        startTimer()
+    }
+
     // MARK: - Internal Properties
     /// OS-provided media library.
     fileprivate let library = MPMediaLibrary()
@@ -12,13 +18,13 @@ class LibraryManager {
 
     // MARK: - Public Proeprties
     /// Set of playlists organized by category.
-    var categories: [String: [Playlist]] = [:]
+    @Published var categories: [String: [Playlist]] = [:]
 
     /// Daily playlists.
-    var daily: DailyPlaylists = DailyPlaylists()
+    @Published var daily: DailyPlaylists = DailyPlaylists()
 
     /// Date the library was last updated.
-    var lastUpdated: Date?
+    @Published var lastUpdated: Date?
 
     /// Timer for refreshing the music library.
     var timer: Timer?
@@ -64,6 +70,7 @@ class LibraryManager {
                 self.loadDailyPlaylists()
             }
         }
+        timer?.fire()
     }
 
     /// Stops the timer.
@@ -82,7 +89,7 @@ class LibraryManager {
             if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
                 for list in lists {
                     if let components = validName(name: list.name ?? "") {
-                        newCategories[components.category, default: []].append(Playlist(list))
+                        newCategories[components.category, default: []].append(Playlist(list, components.name))
                     }
                 }
 

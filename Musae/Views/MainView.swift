@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var library = MusicManager()
+    @ObservedObject var library = LibraryManager()
 
     var body: some View {
         TabView {
@@ -23,6 +23,7 @@ struct MainView: View {
                 }
         }
         .onChange(of: scenePhase) { phase in
+            print(phase)
             switch phase {
             case .active:
                 library.startTimer()

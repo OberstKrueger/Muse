@@ -3,7 +3,7 @@ import MediaPlayer
 /// Playlist populated from a user playlist.
 struct Playlist {
     // MARK: - Initializations
-    init(_ playlist: MPMediaPlaylist) {
+    init(_ playlist: MPMediaPlaylist, _ title: String) {
         // Set id.
         id = playlist.persistentID
 
@@ -15,7 +15,7 @@ struct Playlist {
         }
 
         // Set title.
-        title = playlist.name ?? "Unnamed Playlist"
+        self.title = title
 
     }
 

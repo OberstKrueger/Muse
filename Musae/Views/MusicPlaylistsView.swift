@@ -2,24 +2,24 @@ import SwiftUI
 
 struct MusicPlaylistsView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: MusicManager
+    @ObservedObject var library: LibraryManager
 
     let formatter = NumberFormatter()
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(library.library.playlists.keys.sorted(), id: \.self) { key in
+                ForEach(library.categories.keys.sorted(), id: \.self) { key in
                     let daily = library.daily.playlists[key, default: ""]
-                    let playlists = library.library.playlists[key, default: []]
+                    let playlists = library.categories[key, default: []]
                         .sorted(by: {settings.sortByAveragePlayCount ?
-                                    $0.averagePlayCount < $1.averagePlayCount :
-                                    $0.title < $1.title})
+                            $0.averagePlayCount < $1.averagePlayCount :
+                            $0.title < $1.title
+                        })
                         .map({($0.title, $0.averagePlayCount)})
 
-                    MusicPlaylistsSectionView(category: key,
-                                              dailyName: daily,
-                                              playlists: playlists)
+                    MusicPlaylistsSectionView(category: key, dailyName: daily, playlists: playlists)
+
                 }
             }
             .navigationTitle("Playlists")
@@ -27,7 +27,7 @@ struct MusicPlaylistsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    init(library: MusicManager) {
+    init(library: LibraryManager) {
         self.library = library
     }
 }
@@ -67,6 +67,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(library: MusicManager()).environmentObject(MusicSettings())
+        MusicPlaylistsView(library: LibraryManager()).environmentObject(MusicSettings())
     }
 }
