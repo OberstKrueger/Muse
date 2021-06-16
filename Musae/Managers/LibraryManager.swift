@@ -52,6 +52,21 @@ class LibraryManager: ObservableObject {
         }
     }
 
+    func playlistByName(category: String, name: String) -> Playlist? {
+        let results = categories[category, default: []].filter({$0.title == name})
+
+        switch results.count {
+        case ...0:
+            logger.notice("Playlist \"\(category) - \(name)\" was not found in the library.")
+            return nil
+        case 1:
+            return results[0]
+        default:
+            logger.notice("Multiple playlists named \"\(category) - \(name)\" found: \(results.count)")
+            return nil
+        }
+    }
+
     /// Starts the timer if it is not already running.
     func startTimer() {
         logger.info("Starting library update timer.")
