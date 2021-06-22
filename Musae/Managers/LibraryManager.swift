@@ -89,29 +89,27 @@ class LibraryManager: ObservableObject {
 
     func updateMusic() {
         logger.log("Beginning library update process.")
-        if lastUpdated != library.lastModifiedDate {
-            var newCategories: [String: [Playlist]] = [:]
 
-            if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-                for list in lists {
-                    if let components = validName(name: list.name ?? "") {
-                        newCategories[components.category, default: []].append(Playlist(list, components.name))
-                    }
-                }
+        var newCategories: [String: [Playlist]] = [:]
 
-                if Thread.isMainThread {
-                    self.categories = newCategories
-                    self.lastUpdated = library.lastModifiedDate
-                } else {
-                    DispatchQueue.main.async {
-                        self.categories = newCategories
-                        self.lastUpdated = self.library.lastModifiedDate
-                    }
+        if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
+            for list in lists {
+                if let components = validName(name: list.name ?? "") {
+                    newCategories[components.category, default: []].append(Playlist(list, components.name))
                 }
             }
-            logger.log("Library updated: \(self.library.lastModifiedDate)")
-        } else {
-            logger.log("Library not updated.")
+
+            if Thread.isMainThread {
+                self.categories = newCategories
+                self.lastUpdated = library.lastModifiedDate
+            } else {
+                DispatchQueue.main.async {
+                    self.categories = newCategories
+                    self.lastUpdated = self.library.lastModifiedDate
+                }
+            }
         }
+
+        logger.log("Library updated: \(self.library.lastModifiedDate)")
     }
 }
