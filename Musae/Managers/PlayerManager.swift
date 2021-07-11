@@ -51,30 +51,37 @@ class PlayerManager {
         logger.info("Adding to up next: \(playlist.title)")
 
         if let query = query(playlist.id) {
+            let items = Dictionary(grouping: query.items, by: {$0.playCount})
             let playlistTotal: Float64 = query.items.reduce(0, {$0 + $1.playbackDuration})
 
             var duration: Float64 = 0
             var songs: [MPMediaItem] = []
-            var target: Float64 = (Float64(minutes) * 60) / 2   // Cut in ahlf for two-part response.
+            var target: Float64 = (Float64(minutes) * 60) / 2   // Cut in half for two-part response.
 
             if playlistTotal > (target * 2) {
                 logger.info("Playlist length is longer than user settings value.")
 
-                for item in query.items {
-                    duration += item.playbackDuration
-                    songs.append(item)
+                firstPass: for (_, value) in items.sorted(by: {$0.key < $1.key}) {
+                    for song in value.shuffled() {
+                        logger.info("Adding song to Up Next Queue: \(song.title!), \(song.playCount) plays.")
 
-                    if duration > target { break }
+                        duration += song.playbackDuration
+                        songs.append(song)
+
+                        if duration > target { break firstPass }
+                    }
                 }
 
                 target *= 2
 
                 while duration < target {
-                    let random = query.items.randomElement()!
+                    let song = query.items.randomElement()!
 
-                    if songs.contains(random) == false {
-                        duration += random.playbackDuration
-                        songs.append(random)
+                    if songs.contains(song) == false {
+                        logger.info("Adding song to Up Next Queue: \(song.title!), \(song.playCount) plays.")
+
+                        duration += song.playbackDuration
+                        songs.append(song)
                     }
                 }
 
