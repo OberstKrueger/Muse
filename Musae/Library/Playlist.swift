@@ -10,13 +10,14 @@ struct Playlist {
         // Set averagePlayCount.
         if playlist.items.count == 0 {
             averagePlayCount = .nan
+            length = .nan
         } else {
             averagePlayCount = Float64(playlist.items.reduce(0, {$0 + $1.playCount})) / Float64(playlist.items.count)
+            length = playlist.items.reduce(0, {$0 + $1.playbackDuration}) / 60
         }
 
         // Set title.
         self.title = title
-
     }
 
     // MARK: - Public Properties
@@ -25,6 +26,9 @@ struct Playlist {
 
     /// Persistent ID for the playlist.
     let id: MPMediaEntityPersistentID
+
+    /// Length in minutes of the playlist.
+    let length: Float64
 
     /// Title of the playlist.
     let title: String
