@@ -1,5 +1,5 @@
 /// Authorization status of the user's music library.
-public enum LibraryAuthorizationStatus {
+enum LibraryAuthorizationStatus {
     /// Library access is authorized.
     case authorized
     /// Library access is denied.
