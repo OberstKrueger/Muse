@@ -1,5 +1,5 @@
-import Combine
 import MediaPlayer
+import SwiftUI
 
 /// Checks and requests authorization status for the user's music library.
 class AuthorizationManager: ObservableObject {
