@@ -1,8 +1,6 @@
 import MediaPlayer
 import SwiftUI
 
-// Go back to doing authorizer that also requests authorization
-
 struct AuthorizationView: View {
     @ObservedObject var authorizer: AuthorizationManager
 
