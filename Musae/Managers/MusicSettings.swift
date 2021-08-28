@@ -1,4 +1,4 @@
-import Combine
+import SwiftUI
 
 /// User settings.
 class MusicSettings: ObservableObject {
