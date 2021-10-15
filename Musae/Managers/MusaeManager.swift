@@ -3,7 +3,7 @@ import MediaPlayer
 import SwiftUI
 import os
 
-class LibraryManager: ObservableObject {
+class MusaeManager: ObservableObject {
     // MARK: - Initializers
     init() {
         startTimer()

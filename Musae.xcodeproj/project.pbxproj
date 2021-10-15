@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1948251FBFC2002F3EEA /* MusicSettings.swift */; };
 		563CEA3C2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3B2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift */; };
-		563CEA3E2669CF6600C2E8DC /* LibraryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3D2669CF6600C2E8DC /* LibraryManager.swift */; };
+		563CEA3E2669CF6600C2E8DC /* MusaeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */; };
 		563CEA402669D15300C2E8DC /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3F2669D15300C2E8DC /* Playlist.swift */; };
 		565E805B2676D939007BF1EE /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E805A2676D939007BF1EE /* PlayerManager.swift */; };
 		566433B125F815C400F46880 /* DailyPlaylists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566433B025F815C400F46880 /* DailyPlaylists.swift */; };
@@ -30,7 +30,7 @@
 		5603069E2613D14D00BF0406 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		563C1948251FBFC2002F3EEA /* MusicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettings.swift; sourceTree = "<group>"; };
 		563CEA3B2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAuthorizationStatus.swift; sourceTree = "<group>"; };
-		563CEA3D2669CF6600C2E8DC /* LibraryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryManager.swift; sourceTree = "<group>"; };
+		563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeManager.swift; sourceTree = "<group>"; };
 		563CEA3F2669D15300C2E8DC /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		565E805A2676D939007BF1EE /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		566433B025F815C400F46880 /* DailyPlaylists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlaylists.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */,
-				563CEA3D2669CF6600C2E8DC /* LibraryManager.swift */,
+				563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */,
 				565E805A2676D939007BF1EE /* PlayerManager.swift */,
 				563C1948251FBFC2002F3EEA /* MusicSettings.swift */,
 			);
@@ -210,7 +210,7 @@
 				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */,
 				56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */,
-				563CEA3E2669CF6600C2E8DC /* LibraryManager.swift in Sources */,
+				563CEA3E2669CF6600C2E8DC /* MusaeManager.swift in Sources */,
 				56E047CF251E826700A74B97 /* MainView.swift in Sources */,
 				56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */,
 				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,

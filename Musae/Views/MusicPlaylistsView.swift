@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MusicPlaylistsView: View {
     @EnvironmentObject var settings: MusicSettings
-    @ObservedObject var library: LibraryManager
+    @ObservedObject var library: MusaeManager
 
     let formatter = NumberFormatter()
 
@@ -27,7 +27,7 @@ struct MusicPlaylistsView: View {
         .navigationViewStyle(StackNavigationViewStyle())
     }
 
-    init(library: LibraryManager) {
+    init(library: MusaeManager) {
         self.library = library
     }
 }
@@ -67,6 +67,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(library: LibraryManager()).environmentObject(MusicSettings())
+        MusicPlaylistsView(library: MusaeManager()).environmentObject(MusicSettings())
     }
 }
