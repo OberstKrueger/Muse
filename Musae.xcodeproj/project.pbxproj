@@ -8,17 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563C1948251FBFC2002F3EEA /* MusicSettings.swift */; };
-		563CEA3C2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3B2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift */; };
 		563CEA3E2669CF6600C2E8DC /* MusaeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */; };
 		563CEA402669D15300C2E8DC /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3F2669D15300C2E8DC /* Playlist.swift */; };
 		565E805B2676D939007BF1EE /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E805A2676D939007BF1EE /* PlayerManager.swift */; };
 		566433B125F815C400F46880 /* DailyPlaylists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566433B025F815C400F46880 /* DailyPlaylists.swift */; };
+		5681DA0C2724E2FA0059C2CC /* AuthorizationMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681DA0B2724E2FA0059C2CC /* AuthorizationMachine.swift */; };
 		56A17EC325F4217000CA876B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A17EC225F4217000CA876B /* Defaults.swift */; };
+		56B06106272109F40056AB1D /* AuthorizationUnknownState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B06105272109F40056AB1D /* AuthorizationUnknownState.swift */; };
+		56BC149E273B6B2B003CDB6F /* AuthorizationCheckingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BC149D273B6B2B003CDB6F /* AuthorizationCheckingState.swift */; };
+		56BC14A0273B6B3F003CDB6F /* AuthorizationKnownState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BC149F273B6B3F003CDB6F /* AuthorizationKnownState.swift */; };
+		56BC14A2273B6B50003CDB6F /* AuthorizationRequestingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BC14A1273B6B50003CDB6F /* AuthorizationRequestingState.swift */; };
+		56BC14A4273B7449003CDB6F /* AuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BC14A3273B7449003CDB6F /* AuthorizationStatus.swift */; };
 		56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MusaeApp.swift */; };
 		56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* AppView.swift */; };
 		56CCC51F251E78E00044BA07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC51E251E78E00044BA07 /* Assets.xcassets */; };
 		56CCC522251E78E00044BA07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC521251E78E00044BA07 /* Preview Assets.xcassets */; };
-		56E047C8251E7CE500A74B97 /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */; };
 		56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047CB251E7EF600A74B97 /* AuthorizationView.swift */; };
 		56E047CF251E826700A74B97 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047CE251E826700A74B97 /* MainView.swift */; };
 		56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D1251E827B00A74B97 /* MusicDailyView.swift */; };
@@ -29,12 +33,17 @@
 /* Begin PBXFileReference section */
 		5603069E2613D14D00BF0406 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		563C1948251FBFC2002F3EEA /* MusicSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicSettings.swift; sourceTree = "<group>"; };
-		563CEA3B2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryAuthorizationStatus.swift; sourceTree = "<group>"; };
 		563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeManager.swift; sourceTree = "<group>"; };
 		563CEA3F2669D15300C2E8DC /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		565E805A2676D939007BF1EE /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		566433B025F815C400F46880 /* DailyPlaylists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlaylists.swift; sourceTree = "<group>"; };
+		5681DA0B2724E2FA0059C2CC /* AuthorizationMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationMachine.swift; sourceTree = "<group>"; };
 		56A17EC225F4217000CA876B /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
+		56B06105272109F40056AB1D /* AuthorizationUnknownState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationUnknownState.swift; sourceTree = "<group>"; };
+		56BC149D273B6B2B003CDB6F /* AuthorizationCheckingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationCheckingState.swift; sourceTree = "<group>"; };
+		56BC149F273B6B3F003CDB6F /* AuthorizationKnownState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationKnownState.swift; sourceTree = "<group>"; };
+		56BC14A1273B6B50003CDB6F /* AuthorizationRequestingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationRequestingState.swift; sourceTree = "<group>"; };
+		56BC14A3273B7449003CDB6F /* AuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationStatus.swift; sourceTree = "<group>"; };
 		56CCC517251E78DE0044BA07 /* Musae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musae.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56CCC51A251E78DE0044BA07 /* MusaeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeApp.swift; sourceTree = "<group>"; };
 		56CCC51C251E78DE0044BA07 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
@@ -42,7 +51,6 @@
 		56CCC521251E78E00044BA07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		56CCC523251E78E00044BA07 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		56DF74D12598A553006443B2 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		56E047CB251E7EF600A74B97 /* AuthorizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationView.swift; sourceTree = "<group>"; };
 		56E047CE251E826700A74B97 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56E047D1251E827B00A74B97 /* MusicDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicDailyView.swift; sourceTree = "<group>"; };
@@ -66,7 +74,6 @@
 			children = (
 				566433B025F815C400F46880 /* DailyPlaylists.swift */,
 				56A17EC225F4217000CA876B /* Defaults.swift */,
-				563CEA3B2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift */,
 				563CEA3F2669D15300C2E8DC /* Playlist.swift */,
 			);
 			path = Library;
@@ -83,6 +90,19 @@
 				56E047D7251E82AB00A74B97 /* MusicSettingsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		56B0610727210A080056AB1D /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				56BC149D273B6B2B003CDB6F /* AuthorizationCheckingState.swift */,
+				56BC149F273B6B3F003CDB6F /* AuthorizationKnownState.swift */,
+				5681DA0B2724E2FA0059C2CC /* AuthorizationMachine.swift */,
+				56BC14A1273B6B50003CDB6F /* AuthorizationRequestingState.swift */,
+				56BC14A3273B7449003CDB6F /* AuthorizationStatus.swift */,
+				56B06105272109F40056AB1D /* AuthorizationUnknownState.swift */,
+			);
+			path = Authorization;
 			sourceTree = "<group>";
 		};
 		56CCC50E251E78DE0044BA07 = {
@@ -106,6 +126,7 @@
 		56CCC519251E78DE0044BA07 /* Musae */ = {
 			isa = PBXGroup;
 			children = (
+				56B0610727210A080056AB1D /* Authorization */,
 				56006F7F25D0036B00A6EB07 /* Library */,
 				56E047C6251E7CD200A74B97 /* Managers */,
 				5642C682251E7B1C00430376 /* Views */,
@@ -128,7 +149,6 @@
 		56E047C6251E7CD200A74B97 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				56E047C7251E7CE500A74B97 /* AuthorizationManager.swift */,
 				563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */,
 				565E805A2676D939007BF1EE /* PlayerManager.swift */,
 				563C1948251FBFC2002F3EEA /* MusicSettings.swift */,
@@ -205,8 +225,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56E047C8251E7CE500A74B97 /* AuthorizationManager.swift in Sources */,
+				56B06106272109F40056AB1D /* AuthorizationUnknownState.swift in Sources */,
 				566433B125F815C400F46880 /* DailyPlaylists.swift in Sources */,
+				56BC149E273B6B2B003CDB6F /* AuthorizationCheckingState.swift in Sources */,
 				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */,
 				56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */,
@@ -216,8 +237,11 @@
 				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,
 				563C1949251FBFC2002F3EEA /* MusicSettings.swift in Sources */,
 				563CEA402669D15300C2E8DC /* Playlist.swift in Sources */,
-				563CEA3C2669CB2200C2E8DC /* LibraryAuthorizationStatus.swift in Sources */,
+				56BC14A4273B7449003CDB6F /* AuthorizationStatus.swift in Sources */,
+				56BC14A2273B6B50003CDB6F /* AuthorizationRequestingState.swift in Sources */,
 				56A17EC325F4217000CA876B /* Defaults.swift in Sources */,
+				56BC14A0273B6B3F003CDB6F /* AuthorizationKnownState.swift in Sources */,
+				5681DA0C2724E2FA0059C2CC /* AuthorizationMachine.swift in Sources */,
 				565E805B2676D939007BF1EE /* PlayerManager.swift in Sources */,
 				56E047D8251E82AB00A74B97 /* MusicSettingsView.swift in Sources */,
 			);

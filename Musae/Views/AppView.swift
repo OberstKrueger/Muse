@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppView: View {
-    @ObservedObject var authorizer = AuthorizationManager()
+    @ObservedObject var authorizer = AuthorizationMachine()
 
     var body: some View {
         if authorizer.status == .authorized {
@@ -14,6 +14,6 @@ struct AppView: View {
 
 struct AppView_Previews: PreviewProvider {
     static var previews: some View {
-        AppView(authorizer: AuthorizationManager())
+        AppView()
     }
 }
