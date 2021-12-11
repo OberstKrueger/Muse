@@ -19,6 +19,7 @@ class AuthorizationMachine: GKStateMachine, ObservableObject {
         let _ = self.enter(AuthorizationCheckingState.self)
     }
 
+    /// System logger.
     fileprivate let logger: Logger
 
     /// Current authorization status. Does not require knowledge of current state.
