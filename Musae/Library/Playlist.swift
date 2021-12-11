@@ -8,9 +8,11 @@ struct Playlist {
         if playlist.items.count == 0 {
             averagePlayCount = .nan
             length = .nan
+            unplayed = 0
         } else {
             averagePlayCount = Float64(playlist.items.reduce(0, {$0 + $1.playCount})) / Float64(playlist.items.count)
             length = playlist.items.reduce(0, {$0 + $1.playbackDuration}) / 60
+            unplayed = playlist.items.reduce(0, {$0 + ($1.playCount == 0 ? 1 : 0)})
         }
 
         // Set id.
@@ -44,4 +46,7 @@ struct Playlist {
 
     /// Title of the playlist.
     let title: String
+
+    /// Amount of unplayed tracks.
+    let unplayed: UInt
 }

@@ -28,6 +28,14 @@ struct DailyPlaylists {
                 }
             }
 
+            let unplayed: [String] = value.filter({$0.unplayed > 0})
+                .sorted(by: {$0.unplayed > $1.unplayed})
+                .map({$0.title})
+
+            if unplayed.count > 0 {
+                playlists[key] = unplayed[0]
+            }
+
             let sorted: [String] = value.filter({$0.averagePlayCount.isNaN == false})
                 .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
                 .map({$0.title})
