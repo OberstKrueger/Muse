@@ -33,7 +33,8 @@ struct Playlist {
     /// Songs that make up the playlist.
     var songs: [MPMediaItem] {
         let predicate = MPMediaPropertyPredicate(value: id,
-                                                 forProperty: MPMediaPlaylistPropertyPersistentID, comparisonType: .equalTo)
+                                                 forProperty: MPMediaPlaylistPropertyPersistentID,
+                                                 comparisonType: .equalTo)
         let query = MPMediaQuery()
 
         query.addFilterPredicate(predicate)
