@@ -1,9 +1,11 @@
 import Foundation
+import os
 
 /// Daily playlists for the library.
 struct DailyPlaylists {
     // MARK: - Initializations
     init() {
+        logger.info("Loading previously chosen daily playlists.")
         let defaults = Defaults()
 
         date = defaults.dailyDate
@@ -33,6 +35,7 @@ struct DailyPlaylists {
                 .map({$0.title})
 
             if unplayed.count > 0 {
+                logger.info("Daily playlist for \(key): \(unplayed[0]) has most unplayed.")
                 playlists[key] = unplayed[0]
             }
 
@@ -48,6 +51,10 @@ struct DailyPlaylists {
         defaults.dailyDate = date
         defaults.dailyPlaylists = playlists
     }
+
+    // MARK: - Internal Properties
+    /// System logger.
+    fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "daily")
 
     // MARK: - Public Properties
     /// Date dailiy playlists were updated.
