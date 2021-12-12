@@ -42,7 +42,7 @@ class Defaults {
 }
 
 /// String values from UserDefault keys.
-fileprivate enum DefaultsStrings: String {
+private enum DefaultsStrings: String {
     case dailyDate = "dailyDate"
     case dailyPlaylists = "dailyPlaylists"
     case sortByAveragePlayCount = "SortByAveragePlayCount"

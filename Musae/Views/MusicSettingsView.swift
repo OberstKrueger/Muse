@@ -5,19 +5,17 @@ struct MusicSettingsView: View {
     @ObservedObject var library: MusaeManager
 
     var smallPlaylists: [String] {
-        get {
-            var results: [String] = []
+        var results: [String] = []
 
-            for (category, playlists) in library.categories {
-                for playlist in playlists {
-                    if Int(playlist.length) < settings.upNextMinutes {
-                        results.append("\(category) - \(playlist.title)")
-                    }
+        for (category, playlists) in library.categories {
+            for playlist in playlists {
+                if Int(playlist.length) < settings.upNextMinutes {
+                    results.append("\(category) - \(playlist.title)")
                 }
             }
-
-            return results.sorted()
         }
+
+        return results.sorted()
     }
 
     var body: some View {

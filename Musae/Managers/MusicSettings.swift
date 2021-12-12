@@ -7,7 +7,7 @@ class MusicSettings: ObservableObject {
         sortByAveragePlayCount = defaults.sortByAveragePlayCount
         upNextMinutes = defaults.upNextMinutes
     }
-    
+
     // MARK: - Private Properties
     /// The user defaults database.
     let defaults = Defaults()

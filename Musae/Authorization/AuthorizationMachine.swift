@@ -16,7 +16,7 @@ class AuthorizationMachine: GKStateMachine, ObservableObject {
 
         super.init(states: [checking, known, requesting, unknown])
 
-        let _ = self.enter(AuthorizationCheckingState.self)
+        _ = self.enter(AuthorizationCheckingState.self)
     }
 
     /// System logger.

@@ -1,8 +1,7 @@
 import MediaPlayer
 import SwiftUI
 
-struct AuthorizationView
-: View {
+struct AuthorizationView: View {
     @ObservedObject var authorizer: AuthorizationMachine
 
     var body: some View {
@@ -21,7 +20,7 @@ struct AuthorizationView
                 Text("Authorization to the music library is needed.")
                     .padding()
                 Button("Request Authorization") {
-                    let _ = authorizer.enter(AuthorizationRequestingState.self)
+                    _ = authorizer.enter(AuthorizationRequestingState.self)
                 }
             }
         }
