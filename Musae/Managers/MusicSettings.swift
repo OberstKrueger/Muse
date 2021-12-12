@@ -12,28 +12,30 @@ class MusicSettings: ObservableObject {
     /// The user defaults database.
     let defaults = Defaults()
 
-    // MARK: - Public Properties
-    @Published var _upNextMinutes: Int = 1
-    @Published var _sortByAveragePlayCount: Bool = false
+    /// Internal storage value for sortByAveragePlayCount
+    @Published var sortByAveragePlayCountInternal: Bool = false
 
-    // MARK: - Public Functions
+    /// Internal storage value for upNextMinutes
+    @Published var upNextMinutesInternal: Int = 1
+
+    // MARK: - Public Properties
     /// Sort playlist view by average playcount instead of alphabetically.
     var sortByAveragePlayCount: Bool {
-        get { return _sortByAveragePlayCount }
+        get { return sortByAveragePlayCountInternal }
         set {
             defaults.sortByAveragePlayCount = newValue
-            _sortByAveragePlayCount = newValue
+            sortByAveragePlayCountInternal = newValue
         }
     }
 
     /// Number of minutes for Up Next play.
     var upNextMinutes: Int {
-        get { return _upNextMinutes }
+        get { return upNextMinutesInternal }
         set {
             switch newValue {
-            case ...0:       _upNextMinutes = 1
-            case 1...480: _upNextMinutes = newValue
-            default:      _upNextMinutes = 480
+            case ...0:       upNextMinutesInternal = 1
+            case 1...480: upNextMinutesInternal = newValue
+            default:      upNextMinutesInternal = 480
             }
 
             defaults.upNextMinutes = newValue
