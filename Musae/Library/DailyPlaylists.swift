@@ -37,13 +37,13 @@ struct DailyPlaylists {
             if unplayed.count > 0 {
                 logger.info("Daily playlist for \(key): \(unplayed[0]) has most unplayed.")
                 playlists[key] = unplayed[0]
+            } else {
+                let sorted: [String] = value.filter({$0.averagePlayCount.isNaN == false})
+                    .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
+                    .map({$0.title})
+
+                playlists[key] = sorted[...selection].randomElement()!
             }
-
-            let sorted: [String] = value.filter({$0.averagePlayCount.isNaN == false})
-                .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
-                .map({$0.title})
-
-            playlists[key] = sorted[...selection].randomElement()!
         }
 
         date = Date()
