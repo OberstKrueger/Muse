@@ -18,6 +18,18 @@ struct MusicSettingsView: View {
         return results.sorted()
     }
 
+    var unplayedPlaylists: [(String, UInt)] {
+        var results: [(String, UInt)] = []
+
+        for (category, playlists) in library.categories {
+            for playlist in playlists where playlist.unplayed > 0 {
+                results.append(("\(category) - \(playlist.title)", playlist.unplayed))
+            }
+        }
+
+        return results.sorted(by: {$0.0 < $1.0})
+    }
+
     var body: some View {
         NavigationView {
             Form {
@@ -29,6 +41,13 @@ struct MusicSettingsView: View {
                     Section(header: Text("Small Playlists")) {
                         ForEach(smallPlaylists, id: \.self) { playlist in
                             Text(playlist)
+                        }
+                    }
+                }
+                if unplayedPlaylists.count > 0 {
+                    Section(header: Text("Unplayed Playlists")) {
+                        ForEach(unplayedPlaylists, id: \.0) { title, count in
+                            Text("\(title): \(count)")
                         }
                     }
                 }
