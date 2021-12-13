@@ -35,10 +35,8 @@ class MusaeManager: ObservableObject {
         let elements = name.components(separatedBy: " - ")
 
         if elements.count == 2 {
-            logger.debug("Playlist name is valid: \(name)")
             return (elements[0], elements[1])
         } else {
-            logger.debug("Playlist name is invalid: \(name)")
             return nil
         }
     }
