@@ -4,6 +4,11 @@ import SwiftUI
 import os
 
 class MusaeManager: ObservableObject {
+    init() {
+        self.updateMusic()
+        self.loadDailyPlaylists()
+    }
+
     // MARK: - Internal Properties
     /// OS-provided media library.
     fileprivate let library = MPMediaLibrary()
@@ -63,10 +68,10 @@ class MusaeManager: ObservableObject {
     /// Starts the timer if it is not already running.
     func startTimer() {
         logger.info("Starting library update timer.")
-        self.updateMusic()
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 self.logger.info("Library update timer triggered.")
+                self.updateMusic()
                 self.loadDailyPlaylists()
             }
         }
