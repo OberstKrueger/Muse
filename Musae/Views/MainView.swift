@@ -16,10 +16,10 @@ struct MainView: View {
                     Image(systemName: "music.note.list")
                     Text("Playlists")
                 }
-            MusicSettingsView(library: library)
+            MusicStatisticsView(library: library)
                 .tabItem {
-                    Image(systemName: "gear")
-                    Text("Settings")
+                    Image(systemName: "tablecells")
+                    Text("Statistics")
                 }
         }
         .onChange(of: scenePhase) { phase in

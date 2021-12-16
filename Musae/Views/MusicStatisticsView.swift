@@ -1,7 +1,6 @@
 import SwiftUI
 
-struct MusicSettingsView: View {
-    @EnvironmentObject var settings: MusicSettings
+struct MusicStatisticsView: View {
     @ObservedObject var library: MusaeManager
 
     var smallPlaylists: [String] {
@@ -9,7 +8,7 @@ struct MusicSettingsView: View {
 
         for (category, playlists) in library.categories {
             for playlist in playlists {
-                if Int(playlist.length) < settings.upNextMinutes {
+                if Int(playlist.length) < 30 {
                     results.append("\(category) - \(playlist.title)")
                 }
             }
@@ -33,10 +32,6 @@ struct MusicSettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section {
-                    Toggle("Sort By Average Play Count", isOn: $settings.sortByAveragePlayCount)
-                    Stepper("Up Next Minutes: \(settings.upNextMinutes)", value: $settings.upNextMinutes)
-                }
                 if smallPlaylists.count > 0 {
                     Section(header: Text("Small Playlists")) {
                         ForEach(smallPlaylists, id: \.self) { playlist in
@@ -55,7 +50,7 @@ struct MusicSettingsView: View {
                     Text("Library Updated: \(date)")
                 }
             }
-            .navigationTitle("Settings")
+            .navigationTitle("Statistics")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -63,6 +58,6 @@ struct MusicSettingsView: View {
 
 struct MusicSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicSettingsView(library: MusaeManager()).environmentObject(MusicSettings())
+        MusicStatisticsView(library: MusaeManager())
     }
 }

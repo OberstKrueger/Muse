@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MusicPlaylistsView: View {
-    @EnvironmentObject var settings: MusicSettings
     @ObservedObject var library: MusaeManager
 
     let formatter = NumberFormatter()
@@ -12,10 +11,7 @@ struct MusicPlaylistsView: View {
                 ForEach(library.categories.keys.sorted(), id: \.self) { key in
                     let daily = library.daily.playlists[key, default: ""]
                     let playlists = library.categories[key, default: []]
-                        .sorted(by: {settings.sortByAveragePlayCount ?
-                            $0.averagePlayCount < $1.averagePlayCount :
-                            $0.title < $1.title
-                        })
+                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
                         .map({($0.title, $0.averagePlayCount)})
 
                     MusicPlaylistsSectionView(category: key, dailyName: daily, playlists: playlists)
@@ -67,6 +63,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(library: MusaeManager()).environmentObject(MusicSettings())
+        MusicPlaylistsView(library: MusaeManager())
     }
 }

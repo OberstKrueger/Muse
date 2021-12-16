@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct MusicDailyView: View {
-    @EnvironmentObject var settings: MusicSettings
     @ObservedObject var library: MusaeManager
 
     var player = PlayerManager()
@@ -25,7 +24,7 @@ struct MusicDailyView: View {
                                 player.play(library.playlistByName(category: key, name: value)!)
                             }
                             Button("Up Next") {
-                                player.upNext(library.playlistByName(category: key, name: value)!, settings.upNextMinutes)
+                                player.upNext(library.playlistByName(category: key, name: value)!, 30)
                             }
                             .padding(.leading)
                         }
@@ -46,6 +45,6 @@ struct MusicDailyView: View {
 
 struct MusicDailyView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicDailyView(library: MusaeManager()).environmentObject(MusicSettings())
+        MusicDailyView(library: MusaeManager())
     }
 }
