@@ -9,23 +9,6 @@ class PlayerManager {
     /// System music player.
     fileprivate let system = MPMusicPlayerController.systemMusicPlayer
 
-    // MARK: - Private Functions
-    /// Returns songs from a playlist's persistent ID.
-    func query(_ id: MPMediaEntityPersistentID) -> MPMediaItemCollection? {
-        let predicate = MPMediaPropertyPredicate(value: id,
-                                                 forProperty: MPMediaPlaylistPropertyPersistentID,
-                                                 comparisonType: .equalTo)
-        let query = MPMediaQuery()
-
-        query.addFilterPredicate(predicate)
-
-        if let items = query.items {
-            return MPMediaItemCollection(items: items)
-        } else {
-            return nil
-        }
-    }
-
     // MARK: - Public Functions
     /// Plays the provided playlist shuffled, with least played songs selected first.
     func play(_ playlist: Playlist) {
