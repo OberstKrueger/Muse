@@ -33,7 +33,7 @@ struct MusicDailyView: View {
                 }
                 if let date = library.daily.date {
                     Button("Last updated: \(date)") {
-                        library.loadDailyPlaylists(force: true)
+                        library.update(force: true)
                     }
                 }
             }

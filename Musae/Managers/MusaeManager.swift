@@ -5,8 +5,7 @@ import os
 
 class MusaeManager: ObservableObject {
     init() {
-        self.updateMusic()
-        self.loadDailyPlaylists()
+        self.update()
     }
 
     // MARK: - Internal Properties
@@ -15,6 +14,9 @@ class MusaeManager: ObservableObject {
 
     /// System logger.
     fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
+
+    /// Serial work queue.
+    fileprivate let queue = DispatchQueue(label: "technology.krueger.musae.musicqueue")
 
     // MARK: - Public Proeprties
     /// Set of playlists organized by category.
@@ -42,14 +44,6 @@ class MusaeManager: ObservableObject {
     }
 
     // MARK: - Public Functions
-    /// Load and update daily playlists
-    func loadDailyPlaylists(force: Bool = false) {
-        if daily.date == nil || Calendar.current.isDateInToday(daily.date!) == false || force {
-            logger.notice("Updating daily playlists.")
-            daily = DailyPlaylists(categories)
-        }
-    }
-
     func playlistByName(category: String, name: String) -> Playlist? {
         let results = categories[category, default: []].filter({$0.title == name})
 
@@ -71,8 +65,7 @@ class MusaeManager: ObservableObject {
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
                 self.logger.info("Library update timer triggered.")
-                self.updateMusic()
-                self.loadDailyPlaylists()
+                self.update()
             }
         }
     }
@@ -84,29 +77,37 @@ class MusaeManager: ObservableObject {
         timer = nil
     }
 
-    func updateMusic() {
+    /// Updates the music library and daily playlists.
+    func update(force: Bool = false) {
         logger.log("Beginning library update process.")
 
-        var newCategories: [String: [Playlist]] = [:]
+        queue.async {
+            var newCategories: [String: [Playlist]] = [:]
 
-        if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-            for list in lists {
-                if let components = validName(name: list.name ?? "") {
-                    newCategories[components.category, default: []].append(Playlist(list, components.name))
+            if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
+                for list in lists {
+                    if let components = self.validName(name: list.name ?? "") {
+                        newCategories[components.category, default: []].append(Playlist(list, components.name))
+                    }
                 }
-            }
 
-            if Thread.isMainThread {
-                self.categories = newCategories
-                self.lastUpdated = library.lastModifiedDate
-            } else {
                 DispatchQueue.main.async {
                     self.categories = newCategories
                     self.lastUpdated = self.library.lastModifiedDate
                 }
             }
-        }
 
-        logger.log("Library updated: \(self.library.lastModifiedDate)")
+            if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false || force {
+                self.logger.notice("Updating daily playlists.")
+
+                let newDailyPlaylists = DailyPlaylists(self.categories)
+
+                DispatchQueue.main.async {
+                    self.daily = newDailyPlaylists
+                }
+            }
+
+            self.logger.log("Library updated: \(self.library.lastModifiedDate)")
+        }
     }
 }
