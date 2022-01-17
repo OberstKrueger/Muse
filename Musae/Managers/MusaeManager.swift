@@ -90,20 +90,22 @@ class MusaeManager: ObservableObject {
                         newCategories[components.category, default: []].append(Playlist(list, components.name))
                     }
                 }
-
-                DispatchQueue.main.async {
-                    self.categories = newCategories
-                    self.lastUpdated = self.library.lastModifiedDate
-                }
             }
 
             if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false || force {
                 self.logger.notice("Updating daily playlists.")
 
-                let newDailyPlaylists = DailyPlaylists(self.categories)
+                let newDailyPlaylists = DailyPlaylists(newCategories)
 
                 DispatchQueue.main.async {
+                    self.categories = newCategories
                     self.daily = newDailyPlaylists
+                    self.lastUpdated = self.library.lastModifiedDate
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.categories = newCategories
+                    self.lastUpdated = self.library.lastModifiedDate
                 }
             }
 
