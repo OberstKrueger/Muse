@@ -15,9 +15,6 @@ class MusaeManager: ObservableObject {
     /// System logger.
     fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
-    /// Serial work queue.
-    fileprivate let queue = DispatchQueue(label: "technology.krueger.musae.musicqueue")
-
     // MARK: - Public Proeprties
     /// Set of playlists organized by category.
     @Published var categories: [String: [Playlist]] = [:]
@@ -81,35 +78,29 @@ class MusaeManager: ObservableObject {
     func update(force: Bool = false) {
         logger.log("Beginning library update process.")
 
-        queue.async {
-            var newCategories: [String: [Playlist]] = [:]
+        var newCategories: [String: [Playlist]] = [:]
 
-            if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-                for list in lists {
-                    if let components = self.validName(name: list.name ?? "") {
-                        newCategories[components.category, default: []].append(Playlist(list, components.name))
-                    }
+        if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
+            for list in lists {
+                if let components = self.validName(name: list.name ?? "") {
+                    newCategories[components.category, default: []].append(Playlist(list, components.name))
                 }
             }
-
-            if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false || force {
-                self.logger.notice("Updating daily playlists.")
-
-                let newDailyPlaylists = DailyPlaylists(newCategories)
-
-                DispatchQueue.main.async {
-                    self.categories = newCategories
-                    self.daily = newDailyPlaylists
-                    self.lastUpdated = self.library.lastModifiedDate
-                }
-            } else {
-                DispatchQueue.main.async {
-                    self.categories = newCategories
-                    self.lastUpdated = self.library.lastModifiedDate
-                }
-            }
-
-            self.logger.log("Library updated: \(self.library.lastModifiedDate)")
         }
+
+        if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false || force {
+            self.logger.notice("Updating daily playlists.")
+
+            let newDailyPlaylists = DailyPlaylists(newCategories)
+
+            self.categories = newCategories
+            self.daily = newDailyPlaylists
+            self.lastUpdated = self.library.lastModifiedDate
+        } else {
+            self.categories = newCategories
+            self.lastUpdated = self.library.lastModifiedDate
+        }
+
+        self.logger.log("Library updated: \(self.library.lastModifiedDate)")
     }
 }
