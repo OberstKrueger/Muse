@@ -12,9 +12,7 @@ struct MusicDailyView: View {
                     MusicDailyItemView(library: library, key: key, player: player, value: value)
                 }
                 if let date = library.daily.date {
-                    Button("Last updated: \(date)") {
-                        library.update(force: true)
-                    }
+                    Text("Last updated: \(date)")
                 }
             }
             .navigationTitle("Daily Playlists")

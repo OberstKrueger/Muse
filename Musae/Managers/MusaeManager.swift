@@ -75,7 +75,7 @@ class MusaeManager: ObservableObject {
     }
 
     /// Updates the music library and daily playlists.
-    func update(force: Bool = false) {
+    func update() {
         logger.log("Beginning library update process.")
 
         var newCategories: [String: [Playlist]] = [:]
@@ -88,7 +88,7 @@ class MusaeManager: ObservableObject {
             }
         }
 
-        if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false || force {
+        if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false {
             self.logger.notice("Updating daily playlists.")
 
             let newDailyPlaylists = DailyPlaylists(newCategories)
