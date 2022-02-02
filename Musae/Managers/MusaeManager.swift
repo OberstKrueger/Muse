@@ -10,7 +10,7 @@ class MusaeManager: ObservableObject {
         self.update()
     }
 
-    deinit() {
+    deinit {
         logger.info("Deinitializing MusaeManager")
     }
 
