@@ -4,8 +4,14 @@ import SwiftUI
 import os
 
 class MusaeManager: ObservableObject {
+    // MARK: - Initialization and Deinitialization
     init() {
+        logger.info("Initializing MusaeManager")
         self.update()
+    }
+
+    deinit() {
+        logger.info("Deinitializing MusaeManager")
     }
 
     // MARK: - Internal Properties
@@ -88,7 +94,7 @@ class MusaeManager: ObservableObject {
             }
         }
 
-        if self.daily.date == nil || Calendar.current.isDateInToday(self.daily.date!) == false {
+        if Calendar.current.isDateInToday(self.daily.date) == false {
             self.logger.notice("Updating daily playlists.")
 
             let newDailyPlaylists = DailyPlaylists(newCategories)
