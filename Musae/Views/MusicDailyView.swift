@@ -25,14 +25,14 @@ struct MusicDailyItemView: View {
     var library: MusaeManager
     var key: String
     var player: PlayerManager
-    var value: String
+    var value: Playlist
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(key)
                     .font(.headline)
-                Text(value)
+                Text(value.title)
                     .font(.caption)
                     .foregroundColor(Color.gray)
             }
@@ -40,10 +40,10 @@ struct MusicDailyItemView: View {
             Spacer()
             HStack {
                 Button("Play") {
-                    player.play(library.playlistByName(category: key, name: value)!)
+                    player.play(value)
                 }
                 Button("Up Next") {
-                    player.upNext(library.playlistByName(category: key, name: value)!, 30)
+                    player.upNext(value, 30)
                 }
                 .padding(.leading)
             }

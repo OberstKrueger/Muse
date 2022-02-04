@@ -6,9 +6,9 @@ class Defaults {
     let defaults = UserDefaults.standard
 
     // MARK: - Public Properties
-    var dailyPlaylists: [String: String] {
+    var dailyPlaylists: [String: UInt64] {
         get {
-            switch defaults.dictionary(forKey: DefaultsStrings.dailyPlaylists.rawValue) as? [String: String] {
+            switch defaults.dictionary(forKey: DefaultsStrings.dailyPlaylists.rawValue) as? [String: UInt64] {
             case .none: return [:]
             case .some(let playlists): return playlists
             }
@@ -18,16 +18,16 @@ class Defaults {
     }
 
     // MARK: - Public Functiones
-    var dailyDate: Date? {
+    var dailyDate: Date {
         get {
             let seconds: TimeInterval = defaults.double(forKey: DefaultsStrings.dailyDate.rawValue)
 
             switch seconds {
-            case 0: return nil
+            case 0: return Date(timeIntervalSince1970: 0)
             default: return Date(timeIntervalSince1970: seconds)
             }
         }
-        set { defaults.set(newValue?.timeIntervalSince1970 ?? 0, forKey: DefaultsStrings.dailyDate.rawValue) }
+        set { defaults.set(newValue.timeIntervalSince1970, forKey: DefaultsStrings.dailyDate.rawValue) }
     }
 
     var sortByAveragePlayCount: Bool {

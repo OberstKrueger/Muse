@@ -3,6 +3,14 @@ import MediaPlayer
 /// Playlist populated from a user playlist.
 struct Playlist {
     // MARK: - Initializations
+    init() {
+        averagePlayCount = .nan
+        id = 0
+        length = .nan
+        title = ""
+        unplayed = 0
+    }
+
     init(_ playlist: MPMediaPlaylist, _ title: String) {
         // Set averagePlayCount and length.
         if playlist.items.count == 0 {

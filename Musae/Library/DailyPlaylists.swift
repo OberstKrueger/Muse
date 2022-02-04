@@ -4,52 +4,56 @@ import os
 /// Daily playlists for the library.
 struct DailyPlaylists {
     // MARK: - Initializations
-    init() {
-        logger.info("Loading previously chosen daily playlists.")
-        let defaults = Defaults()
-
-        date = defaults.dailyDate
-        playlists = defaults.dailyPlaylists
-    }
+    init() {}
 
     init(_ libraryPlaylists: [String: [Playlist]]) {
         let defaults = Defaults()
 
-        for (key, value) in libraryPlaylists {
-            var selection: Int {
-                let check: Int = value.count / 2
+        if Calendar.current.isDateInToday(defaults.dailyDate) == false {
+            for (key, value) in libraryPlaylists {
+                var selection: Int {
+                    let check: Int = value.count / 2
 
-                switch check {
-                case ...0: return 0
-                default:
-                    var result: Int = 1
-                    for _ in 1..<(64 - check.leadingZeroBitCount) {
-                        result *= 2
+                    switch check {
+                    case ...0: return 0
+                    default:
+                        var result: Int = 1
+                        for _ in 1..<(64 - check.leadingZeroBitCount) {
+                            result *= 2
+                        }
+                        return result - 1
                     }
-                    return result - 1
+                }
+
+                let unplayed: [Playlist] = value.filter({$0.unplayed > 0})
+                    .sorted(by: {$0.unplayed > $1.unplayed})
+
+                if unplayed.count > 0 {
+                    logger.info("Daily playlist for \(key): \(unplayed[0].title) has most unplayed.")
+                    playlists[key] = unplayed[0]
+                } else {
+                    let sorted: [Playlist] = value.filter({$0.averagePlayCount.isNaN == false})
+                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
+
+                    playlists[key] = sorted[...selection].randomElement()!
                 }
             }
 
-            let unplayed: [String] = value.filter({$0.unplayed > 0})
-                .sorted(by: {$0.unplayed > $1.unplayed})
-                .map({$0.title})
+            date = Date()
 
-            if unplayed.count > 0 {
-                logger.info("Daily playlist for \(key): \(unplayed[0]) has most unplayed.")
-                playlists[key] = unplayed[0]
-            } else {
-                let sorted: [String] = value.filter({$0.averagePlayCount.isNaN == false})
-                    .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
-                    .map({$0.title})
-
-                playlists[key] = sorted[...selection].randomElement()!
+            defaults.dailyDate = date
+            defaults.dailyPlaylists = Dictionary(uniqueKeysWithValues: playlists.map({($0.key, $0.value.id)}))
+        } else {
+            date = defaults.dailyDate
+            for (key, value) in libraryPlaylists {
+                if let id = defaults.dailyPlaylists[key] {
+                    for playlist in value where playlist.id == id {
+                        playlists[key] = playlist
+                        break   // This shouldn't be an issue, as playlists will not share IDs.
+                    }
+                }
             }
         }
-
-        date = Date()
-
-        defaults.dailyDate = date
-        defaults.dailyPlaylists = playlists
     }
 
     // MARK: - Internal Properties
@@ -58,8 +62,8 @@ struct DailyPlaylists {
 
     // MARK: - Public Properties
     /// Date dailiy playlists were updated.
-    var date: Date?
+    var date: Date = Date(timeIntervalSince1970: 0)
 
     /// Daily playlists by category.
-    var playlists: [String: String] = [:]
+    var playlists: [String: Playlist] = [:]
 }
