@@ -23,7 +23,7 @@ struct MainView: View {
                 }
         }
         .onChange(of: scenePhase) { phase in
-            print(phase)
+            print("scenePhase: \(phase)")
             switch phase {
             case .active:
                 library.startTimer()
