@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct AppView: View {
-    @ObservedObject var authorizer = AuthorizationMachine()
+    @StateObject var authorizer = AuthorizationMachine()
 
     var body: some View {
         if authorizer.status == .authorized {
