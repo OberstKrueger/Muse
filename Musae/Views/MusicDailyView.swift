@@ -11,8 +11,10 @@ struct MusicDailyView: View {
                 ForEach(library.daily.playlists.sorted(by: {$0.key < $1.key}), id: \.key) { key, value in
                     MusicDailyItemView(library: library, key: key, player: player, value: value)
                 }
-                if let date = library.daily.date {
-                    Text("Last updated: \(date)")
+                if library.daily.playlists.count > 0 {
+                    Text("Last updated: \(library.daily.date.formatted(.dateTime.year().month().day().weekday(.wide)))")
+                        .font(.caption)
+                        .foregroundColor(Color.gray)
                 }
             }
             .navigationTitle("Daily Playlists")

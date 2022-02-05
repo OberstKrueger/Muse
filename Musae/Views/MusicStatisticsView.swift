@@ -47,7 +47,7 @@ struct MusicStatisticsView: View {
                     }
                 }
                 if let date = library.lastUpdated {
-                    Text("Library Updated: \(date)")
+                    Text("Updated: \(date.formatted(.dateTime.year().month(.wide).day().hour().minute()))")
                 }
             }
             .navigationTitle("Statistics")
