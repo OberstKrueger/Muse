@@ -7,7 +7,6 @@ class MusaeManager: ObservableObject {
     // MARK: - Initialization and Deinitialization
     init() {
         logger.info("Initializing MusaeManager")
-        self.update()
     }
 
     deinit {
@@ -49,6 +48,7 @@ class MusaeManager: ObservableObject {
     // MARK: - Public Functions
     /// Starts the timer if it is not already running.
     func startTimer() {
+        update()
         logger.info("Starting library update timer.")
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
