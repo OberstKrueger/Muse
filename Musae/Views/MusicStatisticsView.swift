@@ -6,6 +6,14 @@ struct MusicStatisticsView: View {
     var body: some View {
         NavigationView {
             Form {
+                if emptyPlaylists.count > 0 {
+                    Section(header: Text("Empty Playlists")) {
+                        ForEach(emptyPlaylists, id: \.self) { playlist in
+                            Text(playlist)
+                        }
+                    }
+                }
+
                 if smallPlaylists.count > 0 {
                     Section(header: Text("Small Playlists")) {
                         ForEach(smallPlaylists, id: \.self) { playlist in
@@ -31,6 +39,18 @@ struct MusicStatisticsView: View {
 }
 
 extension MusicStatisticsView {
+    var emptyPlaylists: [String] {
+        var results: [String] = []
+
+        for (category, playlists) in library.categories {
+            for playlist in playlists.filter({$0.length.isNaN}) {
+                results.append("\(category) - \(playlist.title)")
+            }
+        }
+
+        return results.sorted()
+    }
+
     var smallPlaylists: [String] {
         var results: [String] = []
 
