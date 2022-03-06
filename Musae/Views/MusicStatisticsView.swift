@@ -3,32 +3,6 @@ import SwiftUI
 struct MusicStatisticsView: View {
     @ObservedObject var library: MusaeManager
 
-    var smallPlaylists: [String] {
-        var results: [String] = []
-
-        for (category, playlists) in library.categories {
-            for playlist in playlists {
-                if Int(playlist.length) < 30 {
-                    results.append("\(category) - \(playlist.title)")
-                }
-            }
-        }
-
-        return results.sorted()
-    }
-
-    var unplayedPlaylists: [(String, UInt)] {
-        var results: [(String, UInt)] = []
-
-        for (category, playlists) in library.categories {
-            for playlist in playlists where playlist.unplayed > 0 {
-                results.append(("\(category) - \(playlist.title)", playlist.unplayed))
-            }
-        }
-
-        return results.sorted(by: {$0.0 < $1.0})
-    }
-
     var body: some View {
         NavigationView {
             Form {
@@ -53,6 +27,34 @@ struct MusicStatisticsView: View {
             .navigationTitle("Statistics")
         }
         .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
+
+extension MusicStatisticsView {
+    var smallPlaylists: [String] {
+        var results: [String] = []
+
+        for (category, playlists) in library.categories {
+            for playlist in playlists {
+                if Int(playlist.length) < 30 {
+                    results.append("\(category) - \(playlist.title)")
+                }
+            }
+        }
+
+        return results.sorted()
+    }
+
+    var unplayedPlaylists: [(String, UInt)] {
+        var results: [(String, UInt)] = []
+
+        for (category, playlists) in library.categories {
+            for playlist in playlists where playlist.unplayed > 0 {
+                results.append(("\(category) - \(playlist.title)", playlist.unplayed))
+            }
+        }
+
+        return results.sorted(by: {$0.0 < $1.0})
     }
 }
 
