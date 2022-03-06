@@ -56,7 +56,7 @@ struct MusicStatisticsView: View {
     }
 }
 
-struct MusicSettingsView_Previews: PreviewProvider {
+struct MusicStatisticsView_Previews: PreviewProvider {
     static var previews: some View {
         MusicStatisticsView(library: MusaeManager())
     }
