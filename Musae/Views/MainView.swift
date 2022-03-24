@@ -2,21 +2,22 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var library = MusaeManager()
+    @ObservedObject var manager: MusaeManager
+    var player = PlayerManager()
 
     var body: some View {
         TabView {
-            MusicDailyView(library: library)
+            MusicDailyView(daily: manager.daily, player: player)
                 .tabItem {
                     Image(systemName: "list.bullet.rectangle")
                     Text("Daily")
                 }
-            MusicPlaylistsView(library: library)
+            MusicPlaylistsView(categories: manager.categories, daily: manager.daily)
                 .tabItem {
                     Image(systemName: "music.note.list")
                     Text("Playlists")
                 }
-            MusicStatisticsView(library: library)
+            MusicStatisticsView(categories: manager.categories, updated: manager.lastUpdated)
                 .tabItem {
                     Image(systemName: "tablecells")
                     Text("Statistics")
@@ -26,9 +27,9 @@ struct MainView: View {
             print("scenePhase: \(phase)")
             switch phase {
             case .active:
-                library.startTimer()
+                manager.startTimer()
             case .inactive:
-                library.stopTimer()
+                manager.stopTimer()
             default:
                 break
             }
@@ -38,6 +39,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(manager: MusaeManager())
     }
 }

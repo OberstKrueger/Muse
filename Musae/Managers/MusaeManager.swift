@@ -82,15 +82,12 @@ class MusaeManager: ObservableObject {
         if Calendar.current.isDateInToday(self.daily.date) == false {
             self.logger.notice("Updating daily playlists.")
 
-            let newDailyPlaylists = DailyPlaylists(newCategories)
-
-            self.categories = newCategories
-            self.daily = newDailyPlaylists
-            self.lastUpdated = self.library.lastModifiedDate
-        } else {
-            self.categories = newCategories
-            self.lastUpdated = self.library.lastModifiedDate
+            self.daily = DailyPlaylists(newCategories)
         }
+
+        self.categories = newCategories
+        self.lastUpdated = self.library.lastModifiedDate
+//        self.statistics.update(categories: newCategories)
 
         self.logger.log("Library updated: \(self.library.lastModifiedDate)")
     }

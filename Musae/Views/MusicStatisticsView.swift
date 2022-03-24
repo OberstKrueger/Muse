@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct MusicStatisticsView: View {
-    @ObservedObject var library: MusaeManager
+    var categories: [String: [Playlist]]
+    var updated: Date?
 
     var body: some View {
         NavigationView {
@@ -28,7 +29,7 @@ struct MusicStatisticsView: View {
                         }
                     }
                 }
-                if let date = library.lastUpdated {
+                if let date = updated {
                     Text("Updated: \(date.formatted(.dateTime.year().month(.wide).day().hour().minute()))")
                 }
             }
@@ -42,7 +43,7 @@ extension MusicStatisticsView {
     var emptyPlaylists: [String] {
         var results: [String] = []
 
-        for (category, playlists) in library.categories {
+        for (category, playlists) in categories {
             for playlist in playlists.filter({$0.length.isNaN}) {
                 results.append("\(category) - \(playlist.title)")
             }
@@ -54,7 +55,7 @@ extension MusicStatisticsView {
     var smallPlaylists: [String] {
         var results: [String] = []
 
-        for (category, playlists) in library.categories {
+        for (category, playlists) in categories {
             for playlist in playlists {
                 if Int(playlist.length) < 30 {
                     results.append("\(category) - \(playlist.title)")
@@ -68,7 +69,7 @@ extension MusicStatisticsView {
     var unplayedPlaylists: [(String, UInt)] {
         var results: [(String, UInt)] = []
 
-        for (category, playlists) in library.categories {
+        for (category, playlists) in categories {
             for playlist in playlists where playlist.unplayed > 0 {
                 results.append(("\(category) - \(playlist.title)", playlist.unplayed))
             }
@@ -80,6 +81,6 @@ extension MusicStatisticsView {
 
 struct MusicStatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicStatisticsView(library: MusaeManager())
+        MusicStatisticsView(categories: [:], updated: Date())
     }
 }

@@ -1,16 +1,15 @@
 import SwiftUI
 
 struct MusicPlaylistsView: View {
-    @ObservedObject var library: MusaeManager
-
-    let formatter = NumberFormatter()
+    var categories: [String: [Playlist]]
+    var daily: DailyPlaylists
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(library.categories.keys.sorted(), id: \.self) { key in
-                    let daily = library.daily.playlists[key, default: Playlist()].title
-                    let playlists = library.categories[key, default: []]
+                ForEach(categories.keys.sorted(), id: \.self) { key in
+                    let daily = daily.playlists[key, default: Playlist()].title
+                    let playlists = categories[key, default: []]
                         .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
                         .map({($0.title, $0.averagePlayCount)})
 
@@ -21,10 +20,6 @@ struct MusicPlaylistsView: View {
             .navigationTitle("Playlists")
         }
         .navigationViewStyle(StackNavigationViewStyle())
-    }
-
-    init(library: MusaeManager) {
-        self.library = library
     }
 }
 
@@ -63,6 +58,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(library: MusaeManager())
+        MusicPlaylistsView(categories: [:], daily: DailyPlaylists())
     }
 }

@@ -1,18 +1,17 @@
 import SwiftUI
 
 struct MusicDailyView: View {
-    @ObservedObject var library: MusaeManager
-
-    var player = PlayerManager()
+    var daily: DailyPlaylists
+    var player: PlayerManager
 
     var body: some View {
         NavigationView {
             ScrollView { [self] in
-                ForEach(library.daily.playlists.sorted(by: {$0.key < $1.key}), id: \.key) { key, value in
-                    MusicDailyItemView(library: library, key: key, player: player, value: value)
+                ForEach(daily.playlists.sorted(by: {$0.key < $1.key}), id: \.key) { category, playlist in
+                    MusicDailyItemView(category: category, player: player, playlist: playlist)
                 }
-                if library.daily.playlists.count > 0 {
-                    Text("Last updated: \(library.daily.date.formatted(.dateTime.year().month().day().weekday(.wide)))")
+                if daily.playlists.count > 0 {
+                    Text("Last updated: \(daily.date.formatted(.dateTime.year().month().day().weekday(.wide)))")
                         .font(.caption)
                         .foregroundColor(Color.gray)
                 }
@@ -24,17 +23,16 @@ struct MusicDailyView: View {
 }
 
 struct MusicDailyItemView: View {
-    var library: MusaeManager
-    var key: String
+    var category: String
     var player: PlayerManager
-    var value: Playlist
+    var playlist: Playlist
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(key)
+                Text(category)
                     .font(.headline)
-                Text(value.title)
+                Text(playlist.title)
                     .font(.caption)
                     .foregroundColor(Color.gray)
             }
@@ -42,10 +40,10 @@ struct MusicDailyItemView: View {
             Spacer()
             HStack {
                 Button("Play") {
-                    player.play(value)
+                    player.play(playlist)
                 }
                 Button("Up Next") {
-                    player.upNext(value, 30)
+                    player.upNext(playlist, 30)
                 }
                 .padding(.leading)
             }
@@ -56,6 +54,6 @@ struct MusicDailyItemView: View {
 
 struct MusicDailyView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicDailyView(library: MusaeManager())
+        MusicDailyView(daily: DailyPlaylists(), player: PlayerManager())
     }
 }
