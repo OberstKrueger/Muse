@@ -2,11 +2,10 @@ import SwiftUI
 
 struct AppView: View {
     @StateObject var authorizer = AuthorizationMachine()
-    @StateObject var manager = MusaeManager()
 
     var body: some View {
         if authorizer.status == .authorized {
-            MainView(manager: manager)
+            MainView()
         } else {
             AuthorizationView(authorizer: authorizer)
         }

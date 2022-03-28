@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
-    @ObservedObject var manager: MusaeManager
+    @StateObject var manager = MusaeManager()
     var player = PlayerManager()
 
     var body: some View {
@@ -39,6 +39,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(manager: MusaeManager())
+        MainView()
     }
 }
