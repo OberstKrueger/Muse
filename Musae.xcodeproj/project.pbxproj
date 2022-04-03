@@ -90,14 +90,6 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		566B8A54276AE5A800285D54 /* Player */ = {
-			isa = PBXGroup;
-			children = (
-				565E805A2676D939007BF1EE /* PlayerManager.swift */,
-			);
-			path = Player;
-			sourceTree = "<group>";
-		};
 		56B0610727210A080056AB1D /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,7 +127,6 @@
 				56B0610727210A080056AB1D /* Authorization */,
 				56006F7F25D0036B00A6EB07 /* Library */,
 				56E047C6251E7CD200A74B97 /* Managers */,
-				566B8A54276AE5A800285D54 /* Player */,
 				5642C682251E7B1C00430376 /* Views */,
 				56CCC51A251E78DE0044BA07 /* MusaeApp.swift */,
 				56CCC51E251E78E00044BA07 /* Assets.xcassets */,
@@ -157,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */,
+				565E805A2676D939007BF1EE /* PlayerManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
