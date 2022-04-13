@@ -33,18 +33,6 @@ class MusaeManager: ObservableObject {
     /// Timer for refreshing the music library.
     var timer: Timer?
 
-    // MARK: - Internal Functions
-    /// Checks if the playlist has a valid name.
-    fileprivate func validName(name: String) -> (category: String, name: String)? {
-        let elements = name.components(separatedBy: " - ")
-
-        if elements.count == 2 {
-            return (elements[0], elements[1])
-        } else {
-            return nil
-        }
-    }
-
     // MARK: - Public Functions
     /// Starts the timer if it is not already running.
     func startTimer() {
@@ -73,7 +61,7 @@ class MusaeManager: ObservableObject {
 
         if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
             for list in lists {
-                if let components = self.validName(name: list.name ?? "") {
+                if let components = list.nameComponents {
                     newCategories[components.category, default: []].append(Playlist(list, components.name))
                 }
             }
