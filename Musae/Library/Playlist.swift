@@ -29,7 +29,6 @@ struct Playlist {
         // Set title.
         self.title = title
     }
-
     // MARK: - Public Properties
     /// Average playcount of all songs in the playlist.
     let averagePlayCount: Float64

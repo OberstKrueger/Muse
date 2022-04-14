@@ -4,25 +4,21 @@ import SwiftUI
 import os
 
 class MusaeManager: ObservableObject {
-    // MARK: - Initialization and Deinitialization
+    // MARK: - Initialization
     init() {
         logger.info("Initializing MusaeManager")
     }
 
-    deinit {
-        logger.info("Deinitializing MusaeManager")
-    }
-
     // MARK: - Internal Properties
     /// OS-provided media library.
-    fileprivate let library = MPMediaLibrary()
+    private let library = MPMediaLibrary()
 
     /// System logger.
-    fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
+    private let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
-    // MARK: - Public Proeprties
-    /// Set of playlists organized by category.
-    @Published var categories: [String: [Playlist]] = [:]
+    // MARK: - Public Properties
+    /// Categories from the user's music library.
+    @Published var categories: [Category] = []
 
     /// Daily playlists.
     @Published var daily = DailyPlaylists()
@@ -57,25 +53,28 @@ class MusaeManager: ObservableObject {
     func update() {
         logger.log("Beginning library update process.")
 
-        var newCategories: [String: [Playlist]] = [:]
+        let query = MPMediaQuery.playlists()
+        var updatedCategories: [String: Category] = [:]
 
-        if let lists = MPMediaQuery.playlists().collections as? [MPMediaPlaylist] {
-            for list in lists {
-                if let components = list.nameComponents {
-                    newCategories[components.category, default: []].append(Playlist(list, components.name))
+        if let playlists = query.collections as? [MPMediaPlaylist] {
+            for item in playlists {
+                if let components = item.nameComponents {
+                    updatedCategories[components.category, default: Category(title: components.category)]
+                        .add(item, components.name)
                 }
             }
         }
 
+        let sortedCategories = updatedCategories.values.sorted(by: {$0.title < $1.title})
+
         if Calendar.current.isDateInToday(self.daily.date) == false {
             self.logger.notice("Updating daily playlists.")
 
-            self.daily = DailyPlaylists(newCategories)
+            self.daily = DailyPlaylists(sortedCategories)
         }
 
-        self.categories = newCategories
+        self.categories = sortedCategories
         self.lastUpdated = self.library.lastModifiedDate
-//        self.statistics.update(categories: newCategories)
 
         self.logger.log("Library updated: \(self.library.lastModifiedDate)")
     }

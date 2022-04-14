@@ -1,20 +1,19 @@
 import SwiftUI
 
 struct MusicPlaylistsView: View {
-    var categories: [String: [Playlist]]
+    var categories: [Category]
     var daily: DailyPlaylists
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(categories.keys.sorted(), id: \.self) { key in
-                    let daily = daily.playlists[key, default: Playlist()].title
-                    let playlists = categories[key, default: []]
-                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
+                ForEach(categories, id: \.title) { category in
+                    let daily = daily.playlists[category.title, default: Playlist()].title
+                    let playlists = category.combinedPlaylists
+                        .sorted(by: { $0.averagePlayCount.isTotallyOrdered(belowOrEqualTo: $1.averagePlayCount) })
                         .map({($0.title, $0.averagePlayCount)})
 
-                    MusicPlaylistsSectionView(category: key, dailyName: daily, playlists: playlists)
-
+                    MusicPlaylistsSectionView(category: category.title, dailyName: daily, playlists: playlists)
                 }
             }
             .navigationTitle("Playlists")
@@ -58,6 +57,6 @@ struct MusicPlaylistsItemView: View {
 
 struct MusicPlaylistsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicPlaylistsView(categories: [:], daily: DailyPlaylists())
+        MusicPlaylistsView(categories: [], daily: DailyPlaylists())
     }
 }

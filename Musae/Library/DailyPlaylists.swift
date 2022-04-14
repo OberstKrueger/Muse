@@ -6,13 +6,13 @@ struct DailyPlaylists {
     // MARK: - Initializations
     init() {}
 
-    init(_ libraryPlaylists: [String: [Playlist]]) {
+    init(_ categories: [Category]) {
         let defaults = Defaults()
 
         if Calendar.current.isDateInToday(defaults.dailyDate) == false {
-            for (key, value) in libraryPlaylists {
+            for category in categories {
                 var selection: Int {
-                    let check: Int = value.count / 2
+                    let check: Int = category.playlists.count / 2
 
                     switch check {
                     case ...0: return 0
@@ -25,17 +25,18 @@ struct DailyPlaylists {
                     }
                 }
 
-                let unplayed: [Playlist] = value.filter({$0.unplayed > 0})
-                    .sorted(by: {$0.unplayed > $1.unplayed})
+                if category.unplayedPlaylists.count > 0 {
+                    let mostUnplayed = category.unplayedPlaylists.sorted(by: {$0.unplayed > $1.unplayed})[0]
 
-                if unplayed.count > 0 {
-                    logger.info("Daily playlist for \(key): \(unplayed[0].title) has most unplayed.")
-                    playlists[key] = unplayed[0]
+                    logger.info("Daily playlist for \(category.title): \(mostUnplayed.title) has most unplayed.")
+                    playlists[category.title] = category.unplayedPlaylists[0]
                 } else {
-                    let sorted: [Playlist] = value.filter({$0.averagePlayCount.isNaN == false})
-                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})
+                    let normalPlaylist = category.playlists
+                        .filter({$0.averagePlayCount.isNormal})
+                        .sorted(by: {$0.averagePlayCount < $1.averagePlayCount})[...selection]
+                        .randomElement()!
 
-                    playlists[key] = sorted[...selection].randomElement()!
+                    playlists[category.title] = normalPlaylist
                 }
             }
 
@@ -45,10 +46,10 @@ struct DailyPlaylists {
             defaults.dailyPlaylists = Dictionary(uniqueKeysWithValues: playlists.map({($0.key, $0.value.id)}))
         } else {
             date = defaults.dailyDate
-            for (key, value) in libraryPlaylists {
-                if let id = defaults.dailyPlaylists[key] {
-                    for playlist in value where playlist.id == id {
-                        playlists[key] = playlist
+            for category in categories {
+                if let id = defaults.dailyPlaylists[category.title] {
+                    for playlist in category.combinedPlaylists where playlist.id == id {
+                        playlists[category.title] = playlist
                         break   // This shouldn't be an issue, as playlists will not share IDs.
                     }
                 }

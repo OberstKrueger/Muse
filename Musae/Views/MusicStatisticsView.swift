@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct MusicStatisticsView: View {
-    var categories: [String: [Playlist]]
+    var categories: [Category]
     var updated: Date?
 
     var body: some View {
@@ -43,9 +43,9 @@ extension MusicStatisticsView {
     var emptyPlaylists: [String] {
         var results: [String] = []
 
-        for (category, playlists) in categories {
-            for playlist in playlists.filter({$0.length.isNaN}) {
-                results.append("\(category) - \(playlist.title)")
+        for category in categories {
+            for playlist in category.emptyPlaylists {
+                results.append("\(category.title) - \(playlist.title)")
             }
         }
 
@@ -55,11 +55,9 @@ extension MusicStatisticsView {
     var smallPlaylists: [String] {
         var results: [String] = []
 
-        for (category, playlists) in categories {
-            for playlist in playlists {
-                if Int(playlist.length) < 30 {
-                    results.append("\(category) - \(playlist.title)")
-                }
+        for category in categories {
+            for playlist in category.shortPlaylists {
+                results.append("\(category.title) - \(playlist.title)")
             }
         }
 
@@ -69,9 +67,9 @@ extension MusicStatisticsView {
     var unplayedPlaylists: [(String, UInt)] {
         var results: [(String, UInt)] = []
 
-        for (category, playlists) in categories {
-            for playlist in playlists where playlist.unplayed > 0 {
-                results.append(("\(category) - \(playlist.title)", playlist.unplayed))
+        for category in categories {
+            for playlist in category.unplayedPlaylists {
+                results.append(("\(category.title) - \(playlist.title)", playlist.unplayed))
             }
         }
 
@@ -81,6 +79,6 @@ extension MusicStatisticsView {
 
 struct MusicStatisticsView_Previews: PreviewProvider {
     static var previews: some View {
-        MusicStatisticsView(categories: [:], updated: Date())
+        MusicStatisticsView(categories: [], updated: Date())
     }
 }

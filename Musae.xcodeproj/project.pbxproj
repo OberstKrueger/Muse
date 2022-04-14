@@ -28,6 +28,7 @@
 		56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D4251E828E00A74B97 /* MusicPlaylistsView.swift */; };
 		56E047D8251E82AB00A74B97 /* MusicStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E047D7251E82AB00A74B97 /* MusicStatisticsView.swift */; };
 		56E938E22806CE2F0018EDD9 /* MPMediaPlaylist+NameComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E938E12806CE2F0018EDD9 /* MPMediaPlaylist+NameComponents.swift */; };
+		56E938E42806CFB60018EDD9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E938E32806CFB60018EDD9 /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		56E047D4251E828E00A74B97 /* MusicPlaylistsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlaylistsView.swift; sourceTree = "<group>"; };
 		56E047D7251E82AB00A74B97 /* MusicStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicStatisticsView.swift; sourceTree = "<group>"; };
 		56E938E12806CE2F0018EDD9 /* MPMediaPlaylist+NameComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MPMediaPlaylist+NameComponents.swift"; sourceTree = "<group>"; };
+		56E938E32806CFB60018EDD9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 		56006F7F25D0036B00A6EB07 /* Library */ = {
 			isa = PBXGroup;
 			children = (
+				56E938E32806CFB60018EDD9 /* Category.swift */,
 				566433B025F815C400F46880 /* DailyPlaylists.swift */,
 				56A17EC225F4217000CA876B /* Defaults.swift */,
 				563CEA3F2669D15300C2E8DC /* Playlist.swift */,
@@ -271,6 +274,7 @@
 				56A17EC325F4217000CA876B /* Defaults.swift in Sources */,
 				56BC14A0273B6B3F003CDB6F /* AuthorizationKnownState.swift in Sources */,
 				5681DA0C2724E2FA0059C2CC /* AuthorizationMachine.swift in Sources */,
+				56E938E42806CFB60018EDD9 /* Category.swift in Sources */,
 				565E805B2676D939007BF1EE /* PlayerManager.swift in Sources */,
 				56E047D8251E82AB00A74B97 /* MusicStatisticsView.swift in Sources */,
 			);
