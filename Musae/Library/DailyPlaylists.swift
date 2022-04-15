@@ -29,7 +29,7 @@ struct DailyPlaylists {
                     let mostUnplayed = category.unplayedPlaylists.sorted(by: {$0.unplayed > $1.unplayed})[0]
 
                     logger.info("Daily playlist for \(category.title): \(mostUnplayed.title) has most unplayed.")
-                    playlists[category.title] = category.unplayedPlaylists[0]
+                    playlists[category.title] = mostUnplayed
                 } else {
                     let normalPlaylist = category.playlists
                         .filter({$0.averagePlayCount.isNormal})
