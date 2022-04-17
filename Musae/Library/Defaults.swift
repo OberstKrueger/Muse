@@ -2,8 +2,17 @@ import Foundation
 
 /// Values stored in UserDefaults.
 class Defaults {
+    // MARK: - Initialization
+    init() {
+        defaults = .standard
+
+        #if DEBUG
+        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        #endif
+    }
+
     // MARK: - Internal Properties
-    let defaults = UserDefaults.standard
+    let defaults: UserDefaults
 
     // MARK: - Public Properties
     var dailyPlaylists: [String: UInt64] {
