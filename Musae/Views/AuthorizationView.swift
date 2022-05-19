@@ -2,7 +2,7 @@ import MediaPlayer
 import SwiftUI
 
 struct AuthorizationView: View {
-    @ObservedObject var authorizer: AuthorizationMachine
+    @ObservedObject var authorizer: AuthorizationManager
 
     var body: some View {
         VStack {
@@ -14,13 +14,11 @@ struct AuthorizationView: View {
                     .padding()
                 Text("Music library access denied.")
                     .padding()
-            case .initializing:
-                Text("")
-            case .unknown:
+            case .notAsked, .unknown:
                 Text("Authorization to the music library is needed.")
                     .padding()
                 Button("Request Authorization") {
-                    _ = authorizer.enter(AuthorizationRequestingState.self)
+                    authorizer.requestAuthorization()
                 }
             }
         }
@@ -29,6 +27,6 @@ struct AuthorizationView: View {
 
 struct AuthorizationView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthorizationView(authorizer: AuthorizationMachine())
+        AuthorizationView(authorizer: AuthorizationManager())
     }
 }
