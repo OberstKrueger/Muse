@@ -2,7 +2,6 @@ import Foundation
 
 /// Values stored in UserDefaults.
 class Defaults {
-    // MARK: - Initialization
     init() {
         defaults = .standard
 
@@ -11,10 +10,9 @@ class Defaults {
         #endif
     }
 
-    // MARK: - Internal Properties
-    let defaults: UserDefaults
+    private let defaults: UserDefaults
 
-    // MARK: - Public Properties
+    /// The last daily playlists saved.
     var dailyPlaylists: [String: UInt64] {
         get {
             switch defaults.dictionary(forKey: DefaultsStrings.dailyPlaylists.rawValue) as? [String: UInt64] {
@@ -26,7 +24,7 @@ class Defaults {
         set { defaults.set(newValue, forKey: DefaultsStrings.dailyPlaylists.rawValue) }
     }
 
-    // MARK: - Public Functiones
+    /// The date the daily playlists were last saved.
     var dailyDate: Date {
         get {
             let seconds: TimeInterval = defaults.double(forKey: DefaultsStrings.dailyDate.rawValue)

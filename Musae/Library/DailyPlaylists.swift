@@ -57,14 +57,12 @@ struct DailyPlaylists {
         }
     }
 
-    // MARK: - Internal Properties
-    /// System logger.
-    fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "daily")
-
-    // MARK: - Public Properties
     /// Date dailiy playlists were updated.
     var date: Date = Date(timeIntervalSince1970: 0)
 
     /// Daily playlists by category.
     var playlists: [String: Playlist] = [:]
+
+    /// System logger.
+    private let logger = Logger(subsystem: "technology.krueger.musae", category: "daily")
 }

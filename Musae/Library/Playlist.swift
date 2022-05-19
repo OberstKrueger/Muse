@@ -2,7 +2,6 @@ import MediaPlayer
 
 /// Playlist populated from a user playlist.
 struct Playlist {
-    // MARK: - Initializations
     init() {
         averagePlayCount = .nan
         id = 0
@@ -29,7 +28,7 @@ struct Playlist {
         // Set title.
         self.title = title
     }
-    // MARK: - Public Properties
+
     /// Average playcount of all songs in the playlist.
     let averagePlayCount: Float64
 

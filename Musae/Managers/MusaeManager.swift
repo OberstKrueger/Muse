@@ -4,19 +4,16 @@ import SwiftUI
 import os
 
 class MusaeManager: ObservableObject {
-    // MARK: - Initialization
     init() {
         logger.info("Initializing MusaeManager")
     }
 
-    // MARK: - Internal Properties
     /// OS-provided media library.
     private let library = MPMediaLibrary()
 
     /// System logger.
     private let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
 
-    // MARK: - Public Properties
     /// Categories from the user's music library.
     @Published var categories: [Category] = []
 
@@ -27,9 +24,8 @@ class MusaeManager: ObservableObject {
     @Published var lastUpdated: Date?
 
     /// Timer for refreshing the music library.
-    var timer: Timer?
+    private var timer: Timer?
 
-    // MARK: - Public Functions
     /// Starts the timer if it is not already running.
     func startTimer() {
         update()

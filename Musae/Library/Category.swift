@@ -2,7 +2,6 @@ import MediaPlayer
 
 /// Collection of playlists from the user's music library that all of the same category
 struct Category {
-    // MARK: - Public Properties
     /// All empty playlists in a user's music library.
     var emptyPlaylists: [Playlist] = []
 

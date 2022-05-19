@@ -1,6 +1,7 @@
 import MediaPlayer
 
 extension MPMediaPlaylist {
+    /// Checks whether the playlist has a valid naming scheme and returns it.
     var nameComponents: (category: String, name: String)? {
         if let title = self.name {
             let elements = title.components(separatedBy: " - ")

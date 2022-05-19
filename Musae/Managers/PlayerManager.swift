@@ -2,14 +2,12 @@ import MediaPlayer
 import os
 
 class PlayerManager {
-    // MARK: - Internal Properties
     /// System logger.
-    fileprivate let logger = Logger(subsystem: "technology.krueger.musae", category: "player")
+    private let logger = Logger(subsystem: "technology.krueger.musae", category: "player")
 
     /// System music player.
-    fileprivate let system = MPMusicPlayerController.systemMusicPlayer
+    private let system = MPMusicPlayerController.systemMusicPlayer
 
-    // MARK: - Public Functions
     /// Plays the provided playlist shuffled, with least played songs selected first.
     func play(_ playlist: Playlist) {
         logger.info("Starting playlist: \(playlist.title)")
