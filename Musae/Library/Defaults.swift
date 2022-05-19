@@ -38,16 +38,6 @@ class Defaults {
         }
         set { defaults.set(newValue.timeIntervalSince1970, forKey: DefaultsStrings.dailyDate.rawValue) }
     }
-
-    var sortByAveragePlayCount: Bool {
-        get { return defaults.bool(forKey: DefaultsStrings.sortByAveragePlayCount.rawValue) }
-        set { defaults.set(newValue, forKey: DefaultsStrings.sortByAveragePlayCount.rawValue) }
-    }
-
-    var upNextMinutes: Int {
-        get { return defaults.integer(forKey: DefaultsStrings.upNextMinutes.rawValue) }
-        set { defaults.set(newValue, forKey: DefaultsStrings.upNextMinutes.rawValue) }
-    }
 }
 
 /// String values from UserDefault keys.
