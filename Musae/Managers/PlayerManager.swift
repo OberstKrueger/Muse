@@ -26,6 +26,22 @@ class PlayerManager {
         system.play()
     }
 
+    /// Adds a random song from the playlist to the Up Next queue, ignoring play counts.
+    func random(_ playlist: Playlist) {
+        logger.info("Adding random song to up next: \(playlist.title)")
+
+        if let song = playlist.songs.randomElement() {
+            logger.info("Adding random song to Up Next Queue: \(song.title!).")
+
+            let collection = MPMediaItemCollection(items: [song])
+            let descriptor = MPMusicPlayerMediaItemQueueDescriptor(itemCollection: collection)
+
+            system.prepend(descriptor)
+        } else {
+            logger.info("Could not retrieve a random song from playlist: \(playlist.title)")
+        }
+    }
+
     /// Adds assortment of items to the Up Next queue, favoring lesser played items.
     func upNext(_ playlist: Playlist, _ minutes: Int) {
         logger.info("Adding to up next: \(playlist.title)")

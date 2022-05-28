@@ -39,11 +39,21 @@ struct MusicDailyItemView: View {
             .padding()
             Spacer()
             HStack {
-                Button("Play") {
+                Button {
                     player.play(playlist)
+                } label: {
+                    Image(systemName: "play")
                 }
-                Button("Up Next") {
+                Button {
                     player.upNext(playlist, 30)
+                } label: {
+                    Image(systemName: "list.bullet")
+                }
+                .padding(.leading)
+                Button {
+                    player.random(playlist)
+                } label: {
+                    Image(systemName: "dice")
                 }
                 .padding(.leading)
             }
