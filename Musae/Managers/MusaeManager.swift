@@ -23,30 +23,34 @@ class MusaeManager: ObservableObject {
     /// Date the library was last updated.
     @Published var lastUpdated: Date?
 
-    /// Timer for refreshing the music library.
-    private var timer: Timer?
+    /// Task for refreshing the music library.
+    private var task: Task<Void, Never>?
 
-    /// Starts the timer if it is not already running.
-    func startTimer() {
-        update()
-        logger.info("Starting library update timer.")
-        if timer == nil {
-            timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { _ in
-                self.logger.info("Library update timer triggered.")
-                self.update()
+    /// Refreshes the user library every 30 seconds until cancelled.
+    func refreshTask() {
+        logger.info("Library refresh task triggered.")
+
+        task = Task {
+            await update()
+            try? await Task.sleep(nanoseconds: 30_000_000_000)
+            if Task.isCancelled {
+                return
             }
+            refreshTask()
+
+            // For this, change it so that update returns the results, which can then be passed to a function that
+            // stores it from the main thread.
         }
     }
 
     /// Stops the timer.
-    func stopTimer() {
-        logger.info("Stopping library update timer.")
-        timer?.invalidate()
-        timer = nil
+    func stopRefreshTask() {
+        logger.info("Stopping library refresh task.")
+        task?.cancel()
     }
 
     /// Updates the music library and daily playlists.
-    func update() {
+    func update() async {
         logger.log("Beginning library update process.")
 
         let query = MPMediaQuery.playlists()
@@ -66,11 +70,15 @@ class MusaeManager: ObservableObject {
         if Calendar.current.isDateInToday(self.daily.date) == false {
             self.logger.notice("Updating daily playlists.")
 
-            self.daily = DailyPlaylists(sortedCategories)
+            await MainActor.run {
+                self.daily = DailyPlaylists(sortedCategories)
+            }
         }
 
-        self.categories = sortedCategories
-        self.lastUpdated = self.library.lastModifiedDate
+        await MainActor.run {
+            self.categories = sortedCategories
+            self.lastUpdated = self.library.lastModifiedDate
+        }
 
         self.logger.log("Library updated: \(self.library.lastModifiedDate)")
     }

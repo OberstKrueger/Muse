@@ -27,9 +27,9 @@ struct MainView: View {
             print("scenePhase: \(phase)")
             switch phase {
             case .active:
-                manager.startTimer()
+                manager.refreshTask()
             case .inactive:
-                manager.stopTimer()
+                manager.stopRefreshTask()
             default:
                 break
             }
