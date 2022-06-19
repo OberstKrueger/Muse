@@ -40,18 +40,23 @@ struct MusicDailyItemView: View {
             Spacer()
             HStack {
                 Button {
-                    player.play(playlist)
+                    Task { await player.play(playlist) }
+
                 } label: {
                     Image(systemName: "play")
                 }
                 Button {
-                    player.upNext(playlist, 30)
+                    Task {
+                        await player.upNext(playlist)
+                    }
                 } label: {
                     Image(systemName: "list.bullet")
                 }
                 .padding(.leading)
                 Button {
-                    player.random(playlist)
+                    Task {
+                        await player.random(playlist)
+                    }
                 } label: {
                     Image(systemName: "dice")
                 }

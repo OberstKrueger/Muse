@@ -1,7 +1,7 @@
 import MediaPlayer
 import os
 
-class PlayerManager {
+actor PlayerManager {
     /// System logger.
     private let logger = Logger(subsystem: "technology.krueger.musae", category: "player")
 
@@ -9,7 +9,7 @@ class PlayerManager {
     private let system = MPMusicPlayerController.systemMusicPlayer
 
     /// Plays the provided playlist shuffled, with least played songs selected first.
-    func play(_ playlist: Playlist) {
+    func play(_ playlist: Playlist) async {
         logger.info("Starting playlist: \(playlist.title)")
 
         let songs = Dictionary(grouping: playlist.songs, by: {$0.playCount})
@@ -21,13 +21,15 @@ class PlayerManager {
 
         let collection = MPMediaItemCollection(items: toPlay)
 
-        system.setQueue(with: collection)
-        system.prepareToPlay()
-        system.play()
+        await MainActor.run {
+            system.setQueue(with: collection)
+            system.prepareToPlay()
+            system.play()
+        }
     }
 
     /// Adds a random song from the playlist to the Up Next queue, ignoring play counts.
-    func random(_ playlist: Playlist) {
+    func random(_ playlist: Playlist) async {
         logger.info("Adding random song to up next: \(playlist.title)")
 
         if let song = playlist.songs.randomElement() {
@@ -36,15 +38,19 @@ class PlayerManager {
             let collection = MPMediaItemCollection(items: [song])
             let descriptor = MPMusicPlayerMediaItemQueueDescriptor(itemCollection: collection)
 
-            system.prepend(descriptor)
+            await MainActor.run {
+                system.prepend(descriptor)
+            }
         } else {
             logger.info("Could not retrieve a random song from playlist: \(playlist.title)")
         }
     }
 
     /// Adds assortment of items to the Up Next queue, favoring lesser played items.
-    func upNext(_ playlist: Playlist, _ minutes: Int) {
+    func upNext(_ playlist: Playlist) async {
         logger.info("Adding to up next: \(playlist.title)")
+
+        let minutes = 30
 
         let items = Dictionary(grouping: playlist.songs, by: {$0.playCount})
         let playlistTotal: Float64 = playlist.songs.reduce(0, {$0 + $1.playbackDuration})
@@ -102,6 +108,8 @@ class PlayerManager {
         logger.info("Adding \(songs.count) songs to the Up Next queue.")
         logger.info("Total song length added: \(songs.reduce(0, {$0 + $1.playbackDuration})) seconds.")
 
-        system.prepend(descriptor)
+        await MainActor.run {
+            system.prepend(descriptor)
+        }
     }
 }
