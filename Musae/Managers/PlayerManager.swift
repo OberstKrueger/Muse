@@ -34,7 +34,19 @@ actor PlayerManager {
     func random(_ playlist: Playlist) async {
         logger.info("Adding random song to up next: \(playlist.title)")
 
-        if let song = playlist.songs.randomElement() {
+        let random: MPMediaItem?
+        let unplayed = playlist.songs.filter({$0.playCount == 0})
+
+        if unplayed.isEmpty {
+            random = playlist.songs.randomElement()
+        } else {
+            random = unplayed.randomElement()
+        }
+
+        switch random {
+        case .none:
+            logger.info("Could not retrieve a random song from playlist: \(playlist.title)")
+        case .some(let song):
             logger.info("Adding random song to Up Next Queue: \(song.title!).")
 
             let collection = MPMediaItemCollection(items: [song])
@@ -43,8 +55,6 @@ actor PlayerManager {
             await MainActor.run {
                 system.prepend(descriptor)
             }
-        } else {
-            logger.info("Could not retrieve a random song from playlist: \(playlist.title)")
         }
     }
 
