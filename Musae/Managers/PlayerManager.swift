@@ -22,10 +22,10 @@ actor PlayerManager {
         let collection = MPMediaItemCollection(items: toPlay)
 
         await MainActor.run {
-            system.setQueue(with: collection)
-            system.prepareToPlay()
             system.repeatMode = .all
             system.shuffleMode = .off
+            system.setQueue(with: collection)
+            system.prepareToPlay()
             system.play()
         }
     }
