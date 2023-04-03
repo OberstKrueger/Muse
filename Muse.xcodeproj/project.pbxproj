@@ -87,6 +87,14 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5662118629DAD09800F17F3D /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				565E805A2676D939007BF1EE /* PlayerManager.swift */,
+			);
+			path = Player;
+			sourceTree = "<group>";
+		};
 		56B0610727210A080056AB1D /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,9 +128,10 @@
 				56E938E02806CE1C0018EDD9 /* Extensions */,
 				56B0610727210A080056AB1D /* Authorization */,
 				56006F7F25D0036B00A6EB07 /* Library */,
-				56E047C6251E7CD200A74B97 /* Managers */,
+				5662118629DAD09800F17F3D /* Player */,
 				5642C682251E7B1C00430376 /* Views */,
 				56CCC51A251E78DE0044BA07 /* MuseApp.swift */,
+				563CEA3D2669CF6600C2E8DC /* MuseManager.swift */,
 				56CCC51E251E78E00044BA07 /* Assets.xcassets */,
 				56CCC523251E78E00044BA07 /* Info.plist */,
 				56CCC520251E78E00044BA07 /* Preview Content */,
@@ -136,15 +145,6 @@
 				56CCC521251E78E00044BA07 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		56E047C6251E7CD200A74B97 /* Managers */ = {
-			isa = PBXGroup;
-			children = (
-				563CEA3D2669CF6600C2E8DC /* MuseManager.swift */,
-				565E805A2676D939007BF1EE /* PlayerManager.swift */,
-			);
-			path = Managers;
 			sourceTree = "<group>";
 		};
 		56E938E02806CE1C0018EDD9 /* Extensions */ = {
