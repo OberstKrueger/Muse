@@ -3,16 +3,16 @@ import MediaPlayer
 import SwiftUI
 import os
 
-class MusaeManager: ObservableObject {
+class MuseManager: ObservableObject {
     init() {
-        logger.info("Initializing MusaeManager")
+        logger.info("Initializing MuseManager")
     }
 
     /// OS-provided media library.
     private let library = MPMediaLibrary()
 
     /// System logger.
-    private let logger = Logger(subsystem: "technology.krueger.musae", category: "library")
+    private let logger = Logger(subsystem: "technology.krueger.muse", category: "library")
 
     /// Categories from the user's music library.
     @Published var categories: [Category] = []

@@ -2,7 +2,7 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.scenePhase) var scenePhase
-    @StateObject var manager = MusaeManager()
+    @StateObject var manager = MuseManager()
     var player = PlayerManager()
 
     var body: some View {

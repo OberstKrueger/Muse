@@ -64,5 +64,5 @@ struct DailyPlaylists {
     var playlists: [String: Playlist] = [:]
 
     /// System logger.
-    private let logger = Logger(subsystem: "technology.krueger.musae", category: "daily")
+    private let logger = Logger(subsystem: "technology.krueger.muse", category: "daily")
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 @main
-struct MusaeApp: App {
+struct MuseApp: App {
     var body: some Scene {
         WindowGroup {
             AppView()

@@ -3,18 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		563CEA3E2669CF6600C2E8DC /* MusaeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */; };
+		563CEA3E2669CF6600C2E8DC /* MuseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3D2669CF6600C2E8DC /* MuseManager.swift */; };
 		563CEA402669D15300C2E8DC /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 563CEA3F2669D15300C2E8DC /* Playlist.swift */; };
 		565E805B2676D939007BF1EE /* PlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565E805A2676D939007BF1EE /* PlayerManager.swift */; };
 		566433B125F815C400F46880 /* DailyPlaylists.swift in Sources */ = {isa = PBXBuildFile; fileRef = 566433B025F815C400F46880 /* DailyPlaylists.swift */; };
 		5681DA0C2724E2FA0059C2CC /* AuthorizationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5681DA0B2724E2FA0059C2CC /* AuthorizationManager.swift */; };
 		56A17EC325F4217000CA876B /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A17EC225F4217000CA876B /* Defaults.swift */; };
 		56BC14A4273B7449003CDB6F /* AuthorizationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56BC14A3273B7449003CDB6F /* AuthorizationStatus.swift */; };
-		56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MusaeApp.swift */; };
+		56CCC51B251E78DE0044BA07 /* MuseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51A251E78DE0044BA07 /* MuseApp.swift */; };
 		56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56CCC51C251E78DE0044BA07 /* AppView.swift */; };
 		56CCC51F251E78E00044BA07 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC51E251E78E00044BA07 /* Assets.xcassets */; };
 		56CCC522251E78E00044BA07 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56CCC521251E78E00044BA07 /* Preview Assets.xcassets */; };
@@ -29,15 +29,15 @@
 
 /* Begin PBXFileReference section */
 		5603069E2613D14D00BF0406 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeManager.swift; sourceTree = "<group>"; };
+		563CEA3D2669CF6600C2E8DC /* MuseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseManager.swift; sourceTree = "<group>"; };
 		563CEA3F2669D15300C2E8DC /* Playlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		565E805A2676D939007BF1EE /* PlayerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerManager.swift; sourceTree = "<group>"; };
 		566433B025F815C400F46880 /* DailyPlaylists.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPlaylists.swift; sourceTree = "<group>"; };
 		5681DA0B2724E2FA0059C2CC /* AuthorizationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationManager.swift; sourceTree = "<group>"; };
 		56A17EC225F4217000CA876B /* Defaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Defaults.swift; sourceTree = "<group>"; };
 		56BC14A3273B7449003CDB6F /* AuthorizationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationStatus.swift; sourceTree = "<group>"; };
-		56CCC517251E78DE0044BA07 /* Musae.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Musae.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		56CCC51A251E78DE0044BA07 /* MusaeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusaeApp.swift; sourceTree = "<group>"; };
+		56CCC517251E78DE0044BA07 /* Muse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		56CCC51A251E78DE0044BA07 /* MuseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MuseApp.swift; sourceTree = "<group>"; };
 		56CCC51C251E78DE0044BA07 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		56CCC51E251E78E00044BA07 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56CCC521251E78E00044BA07 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 			children = (
 				56DF74D12598A553006443B2 /* LICENSE */,
 				5603069E2613D14D00BF0406 /* README.md */,
-				56CCC519251E78DE0044BA07 /* Musae */,
+				56CCC519251E78DE0044BA07 /* Muse */,
 				56CCC518251E78DE0044BA07 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -109,12 +109,12 @@
 		56CCC518251E78DE0044BA07 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				56CCC517251E78DE0044BA07 /* Musae.app */,
+				56CCC517251E78DE0044BA07 /* Muse.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		56CCC519251E78DE0044BA07 /* Musae */ = {
+		56CCC519251E78DE0044BA07 /* Muse */ = {
 			isa = PBXGroup;
 			children = (
 				56E938E02806CE1C0018EDD9 /* Extensions */,
@@ -122,12 +122,12 @@
 				56006F7F25D0036B00A6EB07 /* Library */,
 				56E047C6251E7CD200A74B97 /* Managers */,
 				5642C682251E7B1C00430376 /* Views */,
-				56CCC51A251E78DE0044BA07 /* MusaeApp.swift */,
+				56CCC51A251E78DE0044BA07 /* MuseApp.swift */,
 				56CCC51E251E78E00044BA07 /* Assets.xcassets */,
 				56CCC523251E78E00044BA07 /* Info.plist */,
 				56CCC520251E78E00044BA07 /* Preview Content */,
 			);
-			path = Musae;
+			path = Muse;
 			sourceTree = "<group>";
 		};
 		56CCC520251E78E00044BA07 /* Preview Content */ = {
@@ -141,7 +141,7 @@
 		56E047C6251E7CD200A74B97 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				563CEA3D2669CF6600C2E8DC /* MusaeManager.swift */,
+				563CEA3D2669CF6600C2E8DC /* MuseManager.swift */,
 				565E805A2676D939007BF1EE /* PlayerManager.swift */,
 			);
 			path = Managers;
@@ -158,9 +158,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		56CCC516251E78DE0044BA07 /* Musae */ = {
+		56CCC516251E78DE0044BA07 /* Muse */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 56CCC526251E78E00044BA07 /* Build configuration list for PBXNativeTarget "Musae" */;
+			buildConfigurationList = 56CCC526251E78E00044BA07 /* Build configuration list for PBXNativeTarget "Muse" */;
 			buildPhases = (
 				56CCC513251E78DE0044BA07 /* Sources */,
 				56CCC514251E78DE0044BA07 /* Frameworks */,
@@ -170,9 +170,9 @@
 			);
 			dependencies = (
 			);
-			name = Musae;
-			productName = Musae;
-			productReference = 56CCC517251E78DE0044BA07 /* Musae.app */;
+			name = Muse;
+			productName = Muse;
+			productReference = 56CCC517251E78DE0044BA07 /* Muse.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -181,15 +181,16 @@
 		56CCC50F251E78DE0044BA07 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					56CCC516251E78DE0044BA07 = {
 						CreatedOnToolsVersion = 12.0;
 					};
 				};
 			};
-			buildConfigurationList = 56CCC512251E78DE0044BA07 /* Build configuration list for PBXProject "Musae" */;
+			buildConfigurationList = 56CCC512251E78DE0044BA07 /* Build configuration list for PBXProject "Muse" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -202,7 +203,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				56CCC516251E78DE0044BA07 /* Musae */,
+				56CCC516251E78DE0044BA07 /* Muse */,
 			);
 		};
 /* End PBXProject section */
@@ -228,10 +229,10 @@
 				56CCC51D251E78DE0044BA07 /* AppView.swift in Sources */,
 				56E047D5251E828E00A74B97 /* MusicPlaylistsView.swift in Sources */,
 				56E047CC251E7EF600A74B97 /* AuthorizationView.swift in Sources */,
-				563CEA3E2669CF6600C2E8DC /* MusaeManager.swift in Sources */,
+				563CEA3E2669CF6600C2E8DC /* MuseManager.swift in Sources */,
 				56E047CF251E826700A74B97 /* MainView.swift in Sources */,
 				56E047D2251E827B00A74B97 /* MusicDailyView.swift in Sources */,
-				56CCC51B251E78DE0044BA07 /* MusaeApp.swift in Sources */,
+				56CCC51B251E78DE0044BA07 /* MuseApp.swift in Sources */,
 				563CEA402669D15300C2E8DC /* Playlist.swift in Sources */,
 				56E938E22806CE2F0018EDD9 /* MPMediaPlaylist+NameComponents.swift in Sources */,
 				56BC14A4273B7449003CDB6F /* AuthorizationStatus.swift in Sources */,
@@ -369,17 +370,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Musae/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Muse/Preview Content\"";
 				DEVELOPMENT_TEAM = ZM4N24RK3Z;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Musae/Info.plist;
+				INFOPLIST_FILE = Muse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.Musae;
+				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.Muse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -393,17 +394,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"Musae/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Muse/Preview Content\"";
 				DEVELOPMENT_TEAM = ZM4N24RK3Z;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Musae/Info.plist;
+				INFOPLIST_FILE = Muse/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.Musae;
+				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.Muse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -413,7 +414,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		56CCC512251E78DE0044BA07 /* Build configuration list for PBXProject "Musae" */ = {
+		56CCC512251E78DE0044BA07 /* Build configuration list for PBXProject "Muse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				56CCC524251E78E00044BA07 /* Debug */,
@@ -422,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		56CCC526251E78E00044BA07 /* Build configuration list for PBXNativeTarget "Musae" */ = {
+		56CCC526251E78E00044BA07 /* Build configuration list for PBXNativeTarget "Muse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				56CCC527251E78E00044BA07 /* Debug */,

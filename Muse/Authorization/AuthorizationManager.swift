@@ -18,7 +18,7 @@ class AuthorizationManager: ObservableObject {
     /// The current authorization status of the user's music library.
     @Published var status: AuthorizationStatus
 
-    private var logger = Logger(subsystem: "technology.krueger.musae", category: "authorization")
+    private var logger = Logger(subsystem: "technology.krueger.muse", category: "authorization")
 
     /// Requests authorization from the user.
     func requestAuthorization() {

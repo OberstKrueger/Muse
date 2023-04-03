@@ -3,7 +3,7 @@ import os
 
 actor PlayerManager {
     /// System logger.
-    private let logger = Logger(subsystem: "technology.krueger.musae", category: "player")
+    private let logger = Logger(subsystem: "technology.krueger.muse", category: "player")
 
     /// System music player.
     private let system = MPMusicPlayerController.systemMusicPlayer
