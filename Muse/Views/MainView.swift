@@ -23,7 +23,7 @@ struct MainView: View {
                     Text("Statistics")
                 }
         }
-        .onChange(of: scenePhase) { phase in
+        .onChange(of: scenePhase) { _, phase in
             print("scenePhase: \(phase)")
             switch phase {
             case .active:
