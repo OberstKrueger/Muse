@@ -1,7 +1,7 @@
 import MediaPlayer
 import os
 
-actor PlayerManager {
+class PlayerManager {
     /// System logger.
     private let logger = Logger(subsystem: "technology.krueger.muse", category: "player")
 
