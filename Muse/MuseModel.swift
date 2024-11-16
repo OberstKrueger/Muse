@@ -1,7 +1,43 @@
 import Foundation
-import MediaPlayer
+#warning("TODO: Remove this - import MediaPlayer")
 import SwiftUI
 import os
+
+@MainActor
+class MuseModel: ObservableObject {
+    init() {
+        logger.info("Initializing MuseModel")
+    }
+
+    /// Music library service.
+    private let library = LibraryService()
+
+    /// System logger.
+    private let logger = Logger(subsystem: "technology.krueger.muse", category: "MuseModel")
+
+    /// Media player service.
+    private let player = PlayerService()
+
+    /// Categories from the user's music library.
+    @Published var categories: [Category] = []
+
+    #warning("TODO: Daily playlists, but rework to simply be a list of playlists and a last updated date. Or something that perhaps simply pulls from Defaults. Just not the overwrought structure as it is now.")
+
+    /// Daily playlists
+    @Published var dailies: [Playlist] = []
+
+    /// Date the daily playlists were last updated.
+    @Published var dailiesUpdated: Date?
+
+    /// Date the library was last updated.
+    @Published var libraryUpdated: Date?
+
+    #warning("TODO: func refreshTask() needs a rethink most likley")
+
+    #warning("TODO: func stopRefreshTask() might need a rethink.")
+
+    #warning("TODO: func update() definitely needs a refresh.")
+}
 
 class MuseManager: ObservableObject {
     init() {
@@ -32,7 +68,7 @@ class MuseManager: ObservableObject {
 
         task = Task {
             await update()
-            try? await Task.sleep(nanoseconds: 30_000_000_000)
+            try? await Task.sleep(for: .seconds(30))
             if Task.isCancelled {
                 return
             }

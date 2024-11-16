@@ -1,6 +1,22 @@
 import MediaPlayer
 import os
 
+/// Service for playing songs through the system music player.
+class PlayerService {
+    init() {
+        logger.info("Initializing PlayerService")
+    }
+
+    /// System logger.
+    private let logger = Logger(subsystem: "technology.krueger.muse", category: "PlayerService")
+
+    #warning("TODO: func play()")
+
+    #warning("TODO: func random()")
+
+    #warning("TODO: func upNext()")
+}
+
 class PlayerManager {
     /// System logger.
     private let logger = Logger(subsystem: "technology.krueger.muse", category: "player")
