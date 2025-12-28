@@ -15,36 +15,31 @@ actor DefaultsService {
 
     /// Retrieves the daily playlists from UserDefaults.
     /// - Returns: A dictionary that contains the playlist name and persistent ID.
-    func fetchDailyPlaylists() async -> [String: UInt64] {
+    func fetchDailyPlaylists() -> [String: UInt64] {
         return defaults.dictionary(forKey: DefaultsStrings.dailyPlaylists.rawValue) as? [String: UInt64] ?? [:]
     }
     
     /// Retrieves the date the daily playlists were last calculated.
     /// - Returns: A date or the default UNIX time if a date is not stored.
-    func fetchDailyDate() async -> Date {
-        let seconds: TimeInterval = defaults.double(forKey: DefaultsStrings.dailyDate.rawValue)
-
-        switch seconds {
-        case 0: return Date(timeIntervalSince1970: 0)
-        default: return Date(timeIntervalSince1970: seconds)
-        }
+    func fetchDailyDate() -> Date {
+        (defaults.object(forKey: DefaultsStrings.dailyDate.rawValue) as? Date) ?? Date(timeIntervalSince1970: 0)
     }
     
     /// Saves a dictionary of current daily playlists.
     /// - Parameter playlists: A dictionary of genres and playlist persistent IDs.
-    func setDailyPlaylists(_ playlists: [String: UInt64]) async {
+    func setDailyPlaylists(_ playlists: [String: UInt64]) {
         defaults.set(playlists, forKey: DefaultsStrings.dailyPlaylists.rawValue)
     }
     
     /// Saves the current date for daily playlists.
     /// - Parameter date: The date.
-    func setDailyDate(_ date: Date) async {
-        defaults.set(date.timeIntervalSince1970, forKey: DefaultsStrings.dailyDate.rawValue)
+    func setDailyDate(_ date: Date) {
+        defaults.set(date, forKey: DefaultsStrings.dailyDate.rawValue)
     }
 }
 
 /// String values from UserDefault keys.
-fileprivate enum DefaultsStrings: String {
+private enum DefaultsStrings: String {
     case dailyDate = "dailyDate"
     case dailyPlaylists = "dailyPlaylists"
 }
