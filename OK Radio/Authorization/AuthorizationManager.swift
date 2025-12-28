@@ -1,14 +1,14 @@
 import MediaPlayer
-import SwiftUI
 import os
 
 /// Checks and requests authorization status for the user's music library.
-class AuthorizationManager: ObservableObject {
+@Observable
+class AuthorizationManager {
     init() {
-        logger.info("Authorization status unknown.")
-
         self.status = .unknown
         self.updateStatus()
+
+        logger.info("Authorization status unknown.")
     }
 
     init(status: AuthorizationStatus = .unknown) {
@@ -16,7 +16,7 @@ class AuthorizationManager: ObservableObject {
     }
 
     /// The current authorization status of the user's music library.
-    @Published var status: AuthorizationStatus
+    var status: AuthorizationStatus
 
     private var logger = Logger(subsystem: "technology.krueger.muse", category: "authorization")
 
@@ -25,7 +25,9 @@ class AuthorizationManager: ObservableObject {
         logger.info("Requesting authorization.")
 
         MPMediaLibrary.requestAuthorization({ _ in
-            self.updateStatus()
+            Task { @MainActor in
+                self.updateStatus()
+            }
         })
     }
 
