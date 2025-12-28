@@ -18,7 +18,7 @@ class AuthorizationManager {
     /// The current authorization status of the user's music library.
     var status: AuthorizationStatus
 
-    private var logger = Logger(subsystem: "technology.krueger.muse", category: "authorization")
+    private var logger = Logger(subsystem: "technology.krueger.okradio", category: "authorization")
 
     /// Requests authorization from the user.
     func requestAuthorization() {
