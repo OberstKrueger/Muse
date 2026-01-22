@@ -7,8 +7,6 @@ class AuthorizationManager {
     init() {
         self.status = .unknown
         self.updateStatus()
-
-        logger.info("Authorization status unknown.")
     }
 
     init(status: AuthorizationStatus = .unknown) {
@@ -16,9 +14,22 @@ class AuthorizationManager {
     }
 
     /// The current authorization status of the user's music library.
-    var status: AuthorizationStatus
+    var status: AuthorizationStatus {
+        didSet {
+            switch status {
+            case .authorized:
+                logger.info("Authorization status: authorized")
+            case .denied:
+                logger.info("Authorization status: denied")
+            case .notAsked:
+                logger.info("Authorization status: not asked")
+            case .unknown:
+                logger.info("Authorization status: unknown")
+            }
+        }
+    }
 
-    private var logger = Logger(subsystem: "technology.krueger.okradio", category: "authorization")
+    private var logger = Logger(subsystem: "technology.krueger.muse", category: "authorization")
 
     /// Requests authorization from the user.
     func requestAuthorization() {

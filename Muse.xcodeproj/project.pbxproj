@@ -12,15 +12,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		560CDF362F014A1A007FC1A9 /* OK Radio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OK Radio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		560CDF362F014A1A007FC1A9 /* Muse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Muse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		560CDF442F0150BB007FC1A9 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		560CDF452F0150BB007FC1A9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		560CDF382F014A1A007FC1A9 /* OK Radio */ = {
+		560CDF382F014A1A007FC1A9 /* Muse */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "OK Radio";
+			path = Muse;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -41,7 +41,7 @@
 			children = (
 				560CDF442F0150BB007FC1A9 /* LICENSE */,
 				560CDF452F0150BB007FC1A9 /* README.md */,
-				560CDF382F014A1A007FC1A9 /* OK Radio */,
+				560CDF382F014A1A007FC1A9 /* Muse */,
 				560CDF372F014A1A007FC1A9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -49,7 +49,7 @@
 		560CDF372F014A1A007FC1A9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				560CDF362F014A1A007FC1A9 /* OK Radio.app */,
+				560CDF362F014A1A007FC1A9 /* Muse.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -57,9 +57,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		560CDF352F014A1A007FC1A9 /* OK Radio */ = {
+		560CDF352F014A1A007FC1A9 /* Muse */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 560CDF412F014A1B007FC1A9 /* Build configuration list for PBXNativeTarget "OK Radio" */;
+			buildConfigurationList = 560CDF412F014A1B007FC1A9 /* Build configuration list for PBXNativeTarget "Muse" */;
 			buildPhases = (
 				560CDF322F014A1A007FC1A9 /* Sources */,
 				560CDF332F014A1A007FC1A9 /* Frameworks */,
@@ -70,13 +70,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				560CDF382F014A1A007FC1A9 /* OK Radio */,
+				560CDF382F014A1A007FC1A9 /* Muse */,
 			);
-			name = "OK Radio";
+			name = Muse;
 			packageProductDependencies = (
 			);
-			productName = "OK Radio";
-			productReference = 560CDF362F014A1A007FC1A9 /* OK Radio.app */;
+			productName = "Muse";
+			productReference = 560CDF362F014A1A007FC1A9 /* Muse.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -94,7 +94,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 560CDF312F014A1A007FC1A9 /* Build configuration list for PBXProject "OK Radio" */;
+			buildConfigurationList = 560CDF312F014A1A007FC1A9 /* Build configuration list for PBXProject "Muse" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -108,7 +108,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				560CDF352F014A1A007FC1A9 /* OK Radio */,
+				560CDF352F014A1A007FC1A9 /* Muse */,
 			);
 		};
 /* End PBXProject section */
@@ -267,6 +267,7 @@
 				DEVELOPMENT_TEAM = ZM4N24RK3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Muse reads your music library for playlist information.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -277,7 +278,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.krueger.OK-Radio";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.muse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -299,6 +300,7 @@
 				DEVELOPMENT_TEAM = ZM4N24RK3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Muse reads your music library for playlist information.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -309,7 +311,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "technology.krueger.OK-Radio";
+				PRODUCT_BUNDLE_IDENTIFIER = technology.krueger.muse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
@@ -324,7 +326,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		560CDF312F014A1A007FC1A9 /* Build configuration list for PBXProject "OK Radio" */ = {
+		560CDF312F014A1A007FC1A9 /* Build configuration list for PBXProject "Muse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				560CDF3F2F014A1B007FC1A9 /* Debug */,
@@ -333,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		560CDF412F014A1B007FC1A9 /* Build configuration list for PBXNativeTarget "OK Radio" */ = {
+		560CDF412F014A1B007FC1A9 /* Build configuration list for PBXNativeTarget "Muse" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				560CDF422F014A1B007FC1A9 /* Debug */,
