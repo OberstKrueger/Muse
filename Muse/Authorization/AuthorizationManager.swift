@@ -2,6 +2,7 @@ import MediaPlayer
 import os
 
 /// Checks and requests authorization status for the user's music library.
+@MainActor
 @Observable
 class AuthorizationManager {
     init() {
@@ -35,9 +36,9 @@ class AuthorizationManager {
     func requestAuthorization() {
         logger.info("Requesting authorization.")
 
-        MPMediaLibrary.requestAuthorization({ _ in
+        MPMediaLibrary.requestAuthorization({ [weak self] _ in
             Task { @MainActor in
-                self.updateStatus()
+                self?.updateStatus()
             }
         })
     }
@@ -52,7 +53,8 @@ class AuthorizationManager {
         case .denied:        status = .denied
         case .notDetermined: status = .notAsked
         @unknown default:
-            fatalError("Unknown MPMediaLibrary.authorizationStatus() returned: \(MPMediaLibrary.authorizationStatus())")
+            logger.error("Unknown MPMediaLibrary.authorizationStatus() returned: \(MPMediaLibrary.authorizationStatus().rawValue)")
+            status = .unknown
         }
     }
 }
