@@ -75,7 +75,7 @@
 			name = Muse;
 			packageProductDependencies = (
 			);
-			productName = "Muse";
+			productName = Muse;
 			productReference = 560CDF362F014A1A007FC1A9 /* Muse.app */;
 			productType = "com.apple.product-type.application";
 		};
