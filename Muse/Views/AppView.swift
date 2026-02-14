@@ -1,19 +1,21 @@
 import SwiftUI
 
 struct AppView: View {
-    @StateObject var authorizer = AuthorizationManager()
+    @State var model = MuseModel()
 
     var body: some View {
-        if authorizer.status == .authorized {
-            MainView()
+        if model.authorizationStatus == .authorized {
+            Button("Update", action: {
+                model.update()
+            })
         } else {
-            AuthorizationView(authorizer: authorizer)
+            Button("Authorize", action: {
+                model.requestAuthorization()
+            })
         }
     }
 }
 
-struct AppView_Previews: PreviewProvider {
-    static var previews: some View {
-        AppView()
-    }
+#Preview {
+    AppView()
 }
