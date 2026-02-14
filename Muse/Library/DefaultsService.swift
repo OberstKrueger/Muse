@@ -1,17 +1,16 @@
 import Foundation
 
 /// Values stored in UserDefaults.
-actor DefaultsService {
+class DefaultsService {
     private let defaults: UserDefaults
 
     init() {
         defaults = .standard
 
         #if DEBUG
-        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        defaults.removePersistentDomain(forName: Bundle.main.bundleIdentifier ?? "technology.krueger.muse")
         #endif
     }
-
 
     /// Retrieves the daily playlists from UserDefaults.
     /// - Returns: A dictionary that contains the playlist name and persistent ID.
